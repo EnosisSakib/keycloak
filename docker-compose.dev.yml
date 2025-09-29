@@ -1,0 +1,52 @@
+version: "4.47"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: dev_keycloak_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - keycloak_network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.2
+    container_name: dev_keycloak
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    command: start-dev
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - keycloak_network
+
+  node-server:
+    build: ./node-server
+    container_name: dev_node_server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node-server:/usr/src/app
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - keycloak
+    networks:
+      - keycloak_network
+
+volumes:
+  postgres_data:
+
+networks:
+  keycloak_network:
