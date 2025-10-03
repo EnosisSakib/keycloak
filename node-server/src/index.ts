@@ -11,7 +11,7 @@ const memoryStore = new session.MemoryStore();
 
 const kcConfig = {
   realm: "myrealm",
-  "auth-server-url": "http://localhost:8080/",
+  "auth-server-url": "http://keycloak:8080/",
   "ssl-required": "external",
   resource: "myclient",
   "bearer-only": true,

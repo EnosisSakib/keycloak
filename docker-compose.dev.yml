@@ -1,4 +1,4 @@
-version: "4.47"
+version: "3.9"
 
 services:
   postgres:
@@ -12,7 +12,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - keycloak_network
-
+#add postgres viewer
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.2
     container_name: dev_keycloak
@@ -34,6 +34,8 @@ services:
   node-server:
     build: ./node-server
     container_name: dev_node_server
+    env_file:
+      - .env
     ports:
       - "3000:3000"
     volumes:
@@ -44,9 +46,54 @@ services:
       - keycloak
     networks:
       - keycloak_network
+  
+  wordpress_db:
+    image: mysql:8.0
+    container_name: dev_wordpress_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpresspassword
+    volumes:
+      - wordpress_db_data:/var/lib/mysql
+    networks:
+      - keycloak_network
+  
+  phpmyadmin:
+    depends_on:
+      - wordpress_db
+    image: phpmyadmin/phpmyadmin 
+    ports:
+      - '8180:80'
+    environment:
+      PMA_HOST: wordpress_db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    networks:
+      - keycloak_network
+
+
+  wordpress:
+    image: wordpress:latest
+    container_name: dev_wordpress
+    depends_on:
+      - wordpress_db
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: wordpress_db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpresspassword
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - keycloak_network
 
 volumes:
   postgres_data:
+  wordpress_db_data:
+  wordpress_data:
 
 networks:
   keycloak_network:
