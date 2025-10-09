@@ -12,7 +12,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - keycloak_network
-#add postgres viewer
+  #add postgres viewer
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.2
     container_name: dev_keycloak
@@ -46,7 +46,7 @@ services:
       - keycloak
     networks:
       - keycloak_network
-  
+
   wordpress_db:
     image: mysql:8.0
     container_name: dev_wordpress_db
@@ -59,19 +59,18 @@ services:
       - wordpress_db_data:/var/lib/mysql
     networks:
       - keycloak_network
-  
+
   phpmyadmin:
     depends_on:
       - wordpress_db
-    image: phpmyadmin/phpmyadmin 
+    image: phpmyadmin/phpmyadmin
     ports:
-      - '8180:80'
+      - "8180:80"
     environment:
       PMA_HOST: wordpress_db
       MYSQL_ROOT_PASSWORD: rootpassword
     networks:
       - keycloak_network
-
 
   wordpress:
     image: wordpress:latest
@@ -86,7 +85,32 @@ services:
       WORDPRESS_DB_PASSWORD: wordpresspassword
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - wordpress_data:/var/www/html
+      - ./wordpress_data:/var/www/html
+    networks:
+      - keycloak_network
+
+  next-app:
+    build: ./next-app
+    container_name: dev_next_app
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./next-app:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - PORT=3002
+      - NEXTAUTH_URL=http://localhost:3002
+      # - KEYCLOAK_ISSUER=http://keycloak:8080/realms/quickstart
+      # - KEYCLOAK_CLIENT_ID=nextjs-client
+      # - KEYCLOAK_CLIENT_SECRET=your-keycloak-client-secret
+      # - NEXTAUTH_SECRET=supersecretkey
+      - NODE_API_URL=http://node-server:3000
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - node-server
+      - keycloak
     networks:
       - keycloak_network
 
