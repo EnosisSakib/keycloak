@@ -27,6 +27,25 @@ export default function Home() {
     } catch (e) {
       console.error(e);
     }
+
+    if (!auth.isLogin || !auth.token) return;
+    try {
+      const response = await fetch("http://localhost:3000/users", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+          // "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("failed to fetch data");
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
