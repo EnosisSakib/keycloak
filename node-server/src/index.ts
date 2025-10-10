@@ -29,7 +29,11 @@ const app = express();
 app.use(cors());
 app.use(
   cors({
-    origin: ["http://localhost:8000", "http://localhost:3002"],
+    origin: [
+      "http://localhost:8000",
+      "http://localhost:3002",
+      "http://localhost:1122",
+    ],
     credentials: true,
   })
 );

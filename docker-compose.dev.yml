@@ -33,7 +33,7 @@ services:
 
   node-server:
     build: ./node-server
-    container_name: dev_node_server
+    container_name: node_server
     env_file:
       - .env
     ports:
@@ -65,7 +65,7 @@ services:
       - wordpress_db
     image: phpmyadmin/phpmyadmin
     ports:
-      - "8180:80"
+      - "8180:8180"
     environment:
       PMA_HOST: wordpress_db
       MYSQL_ROOT_PASSWORD: rootpassword
@@ -78,7 +78,7 @@ services:
     depends_on:
       - wordpress_db
     ports:
-      - "8000:80"
+      - "8000:83"
     environment:
       WORDPRESS_DB_HOST: wordpress_db:3306
       WORDPRESS_DB_USER: wordpress
@@ -101,7 +101,7 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - PORT=3002
-      - NEXTAUTH_URL=http://localhost:3002
+      # - NEXTAUTH_URL=http://localhost:3002
       # - KEYCLOAK_ISSUER=http://keycloak:8080/realms/quickstart
       # - KEYCLOAK_CLIENT_ID=nextjs-client
       # - KEYCLOAK_CLIENT_SECRET=your-keycloak-client-secret
@@ -113,6 +113,19 @@ services:
       - keycloak
     networks:
       - keycloak_network
+  nginx:
+    image: nginx:latest
+    container_name: dev_nginx
+    ports:
+      - "1122:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - node-server
+      - wordpress
+      - next-app
+    networks:
+      - keycloak_network
 
 volumes:
   postgres_data:
@@ -121,3 +134,4 @@ volumes:
 
 networks:
   keycloak_network:
+    driver: bridge
