@@ -65,7 +65,7 @@ services:
       - wordpress_db
     image: phpmyadmin/phpmyadmin
     ports:
-      - "8180:8180"
+      - "8180:80"
     environment:
       PMA_HOST: wordpress_db
       MYSQL_ROOT_PASSWORD: rootpassword
@@ -78,7 +78,7 @@ services:
     depends_on:
       - wordpress_db
     ports:
-      - "8000:83"
+      - "8000:80"
     environment:
       WORDPRESS_DB_HOST: wordpress_db:3306
       WORDPRESS_DB_USER: wordpress
@@ -117,7 +117,7 @@ services:
     image: nginx:latest
     container_name: dev_nginx
     ports:
-      - "1122:80"
+      - "1122:83"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
     depends_on:
