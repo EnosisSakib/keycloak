@@ -48,6 +48,7 @@ define( 'DB_USER', getenv_docker('WORDPRESS_DB_USER', 'example username') );
 
 /** Database password */
 define( 'DB_PASSWORD', getenv_docker('WORDPRESS_DB_PASSWORD', 'example password') );
+// define('WP_ALLOW_MULTISITE', true);
 
 /**
  * Docker image fallback values above are sourced from the official WordPress installation wizard:
@@ -134,6 +135,29 @@ if ($configExtra = getenv_docker('WORDPRESS_CONFIG_EXTRA', '')) {
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }
+
+// Ensure WordPress sees the real external host + port
+if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
+}
+
+// Ensure scheme consistency (http/https)
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+    $_SERVER['HTTPS'] = ($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ? 'on' : 'off';
+}
+
+
+
+define('WP_HOME', 'http://localhost:1122/wordpress');
+define('WP_SITEURL', 'http://localhost:1122/wordpress');
+# ProxyPass Settings 
+# 
+# DO NOT REMOVE: overriding the following variables is
+# required to ensure that any request /wordpress/* is handled
+$_SERVER['REQUEST_URI'] = '/wordpress' . $_SERVER['REQUEST_URI'];
+$_SERVER['SCRIPT_NAME'] = '/wordpress' . $_SERVER['SCRIPT_NAME'];
+$_SERVER['PHP_SELF'] = '/wordpress' . $_SERVER['PHP_SELF'];
+
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
