@@ -30,13 +30,16 @@ export default function Home() {
 
     if (!auth.isLogin || !auth.token) return;
     try {
+
       const response = await fetch("http://localhost:3000/users", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${auth.token}`,
-          // "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
+        // credentials: "include",
       });
+
       if (!response.ok) {
         throw new Error("failed to fetch data");
       }

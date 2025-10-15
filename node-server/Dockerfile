@@ -1,5 +1,8 @@
+# Use Alpine-based Node image
+FROM node:22.10.0-alpine
 
-FROM node:22.20.0
+# Install bash & build tools (needed for native modules)
+RUN apk add --no-cache bash git python3 make g++
 
 WORKDIR /usr/src/app
 
