@@ -147,6 +147,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
 }
 
 
+define('FS_METHOD', 'direct');
 
 define('WP_HOME', 'http://localhost:1122/wordpress');
 define('WP_SITEURL', 'http://localhost:1122/wordpress');
