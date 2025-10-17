@@ -35,12 +35,6 @@ export default function UserListPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (user && user.role !== "Admin") {
-      router.push("/react-app/profile");
-    }
-  }, [user, router]);
-
-  useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await fetch(
