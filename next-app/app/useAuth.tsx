@@ -1,73 +1,91 @@
-import { useEffect, useRef, useState } from "react";
-import Keycloak from "keycloak-js";
+"use client";
+
+import { useKeycloak } from "@react-keycloak/web";
+import { useEffect, useState } from "react";
+
+interface User {
+  name?: string;
+  email?: string;
+  role?: string;
+}
 
 const useAuth = () => {
-  const isRan = useRef(false);
-  const [isLogin, setLogin] = useState<boolean>(false);
+  const { keycloak, initialized } = useKeycloak();
   const [token, setToken] = useState<string>("");
-  const [keycloak, setKeycloak] = useState<Keycloak | null>(null);
+  const [isLogin, setLogin] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    if (isRan.current) return;
-    isRan.current = true;
+    if (!initialized || !keycloak) return;
 
-    if (typeof window === "undefined") return;
+    if (keycloak.authenticated && keycloak.token) {
+      setLogin(true);
+      setToken(keycloak.token);
 
-    const getCookie = (name: string): string | null => {
-      const match = document.cookie.match(
-        new RegExp("(^| )" + name + "=([^;]+)")
-      );
-      return match ? decodeURIComponent(match[2]) : null;
-    };
+      const tokenParsed = keycloak.tokenParsed as any;
+      setUser({
+        name: tokenParsed?.name || tokenParsed?.preferred_username,
+        email: tokenParsed?.email,
+        role: tokenParsed?.realm_access?.roles?.includes("admin")
+          ? "Admin"
+          : "User",
+      });
 
-    const storedLogin = getCookie("isLogin");
-    const storedToken = getCookie("token");
+      document.cookie = `token=${encodeURIComponent(
+        keycloak.token
+      )}; path=/; max-age=${60 * 60}`;
+      document.cookie = `isLogin=true; path=/; max-age=${60 * 60}`;
+    } else {
+      setLogin(false);
+      setUser(null);
+      document.cookie = "isLogin=false; path=/; max-age=0;";
+      document.cookie = "token=; path=/; max-age=0;";
+    }
 
-    if (storedLogin) setLogin(storedLogin === "true");
-    if (storedToken) setToken(storedToken);
-
-    const Client = new Keycloak({
-      url: "http://localhost:8080/",
-      realm: "myrealm",
-      clientId: "myclient",
-    });
-
-    Client.init({
-      onLoad: "login-required",
-      checkLoginIframe: false,
-      redirectUri: "http://localhost:1122",
-    })
-      .then((authenticated) => {
-        setLogin(authenticated);
-        setKeycloak(Client);
-
-        if (Client.token) {
-          setToken(Client.token);
-
-          document.cookie = `token=${encodeURIComponent(
-            Client.token
-          )}; path=/; max-age=${60 * 60};`;
+    const refreshInterval = setInterval(async () => {
+      if (keycloak.authenticated) {
+        try {
+          const refreshed = await keycloak.updateToken(60);
+          if (refreshed && keycloak.token) {
+            console.log("Token refreshed");
+            setToken(keycloak.token);
+            const tokenParsed = keycloak.tokenParsed as any;
+            setUser({
+              name: tokenParsed?.name || tokenParsed?.preferred_username,
+              email: tokenParsed?.email,
+              role: tokenParsed?.realm_access?.roles?.includes("admin")
+                ? "Admin"
+                : "User",
+            });
+          }
+        } catch (err) {
+          console.error("Token refresh failed:", err);
+          keycloak.logout();
         }
+      }
+    }, 30000);
 
-        document.cookie = `isLogin=${
-          authenticated ? "true" : "false"
-        }; path=/; max-age=${60 * 60};`;
-      })
-      .catch((err) => console.error("Keycloak init error:", err));
-  }, []);
-  
+    return () => clearInterval(refreshInterval);
+  }, [initialized, keycloak]);
 
   const logout = () => {
     if (keycloak) keycloak.logout();
     setLogin(false);
     setToken("");
-    if (typeof window !== "undefined") {
-      document.cookie = "isLogin=; path=/; max-age=0;";
-      document.cookie = "token=; path=/; max-age=0;";
-    }
+    setUser(null);
   };
 
-  return { isLogin, token, logout };
+  const login = () => keycloak?.login();
+
+  return {
+    keycloak,
+    token,
+    isLogin,
+    user,
+    login,
+    logout,
+    loading: !initialized,
+  };
 };
 
 export default useAuth;
