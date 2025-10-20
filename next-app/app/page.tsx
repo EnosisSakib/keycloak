@@ -11,13 +11,16 @@ export default function Home() {
 
   const callApi = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/currentuser`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("failed to fetch data");
       }

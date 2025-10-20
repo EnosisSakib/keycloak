@@ -1,18 +1,19 @@
 import express from "express";
 import { extractToken } from "../middlewares/extractToken";
 import { hasAccess } from "../middlewares/hasAccess";
-import { getUsers } from "../services/keycloakService";
-import { AuthenticatedRequest } from "../types/AuthenticatedRequest";
+import { keycloakService } from "../services/keycloakService";
+import { AuthenticatedRequest } from "../types/authenticatedRequest";
+import { Roles } from "../types/roles";
 
 export const router = express.Router();
 
 router.get(
   "/",
   extractToken,
-  hasAccess("Admin"),
+  hasAccess(Roles.Admin),
   async (req: AuthenticatedRequest, res) => {
     try {
-      const users = await getUsers();
+      const users = await keycloakService.getUsers();
       res.json({ users });
     } catch (e) {
       console.error("Error fetching users:", e);
