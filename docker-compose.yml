@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
     networks:
       - keycloak_network
   #add postgres viewer
@@ -56,7 +56,7 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpresspassword
     volumes:
-      - wordpress_db_data:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
     networks:
       - keycloak_network
 
@@ -124,10 +124,10 @@ services:
     networks:
       - keycloak_network
 
-volumes:
-  postgres_data:
-  wordpress_db_data:
-  wordpress_data:
+# volumes:
+#   postgres_data:
+#   wordpress_db_data:
+#   wordpress_data:
 
 networks:
   keycloak_network:
