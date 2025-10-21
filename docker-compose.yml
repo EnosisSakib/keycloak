@@ -114,7 +114,7 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
-      - "1122:80"
+      - "8090:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
     depends_on:
