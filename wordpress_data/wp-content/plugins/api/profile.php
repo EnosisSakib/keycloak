@@ -14,7 +14,7 @@ function jwt_profile_shortcode() {
     if (!$token) return '<div class="token-display">No token found in cookies.</div>';
 
 
-    $api_url = 'http://node-server:3000';
+    $api_url = 'http://node-server:3000/currentuser';
 
     $args = [
         'headers' => [

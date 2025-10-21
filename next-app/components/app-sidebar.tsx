@@ -51,11 +51,11 @@ const data = {
       items: [
         {
           title: "Profile",
-          url: "/wordpress/profile/",
+          url: "/wordpress/index.php/profile/",
         },
         {
           title: "User List",
-          url: "/wordpress/user-list/",
+          url: "/wordpress/index.php/user-list/",
         },
         {
           title: "Admin Console",
