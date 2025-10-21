@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   postgres:
     image: postgres:16
@@ -9,10 +7,25 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - keycloak_network
-  #add postgres viewer
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8070:80"
+    depends_on:
+      - postgres
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+    networks:
+      - keycloak_network
+
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.2
     container_name: keycloak
@@ -56,7 +69,7 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpresspassword
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - wordpress_db_data:/var/lib/mysql
     networks:
       - keycloak_network
 
@@ -124,11 +137,10 @@ services:
     networks:
       - keycloak_network
 
-# volumes:
-#   postgres_data:
-#   wordpress_db_data:
-#   wordpress_data:
-
+volumes:
+  postgres_data:
+  wordpress_db_data:
+  
 networks:
   keycloak_network:
     driver: bridge
