@@ -53,6 +53,7 @@ services:
       - "3000:3000"
     volumes:
       - ./node-server:/usr/src/app
+      - /usr/src/app/node_modules
     environment:
       - NODE_ENV=development
     depends_on:
@@ -140,7 +141,7 @@ services:
 volumes:
   postgres_data:
   wordpress_db_data:
-  
+
 networks:
   keycloak_network:
     driver: bridge
