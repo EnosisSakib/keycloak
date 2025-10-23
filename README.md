@@ -165,8 +165,10 @@ Login using the credentials defined in `docker-compose.yml` under the **keycloak
    - Title: **User List** → add shortcode `[show_user_list]`
 
 ---
+### 7. Restart Docker containers after updating .env files
+---
 
-### 7. (Optional) Login with Google
+### 8. (Optional) Login with Google
 
 Follow this guide to configure Google login for Keycloak:  
 🔗 [https://medium.com/@stefannovak96/signing-in-with-google-with-keycloak-bf5166e93d1e](https://medium.com/@stefannovak96/signing-in-with-google-with-keycloak-bf5166e93d1e)
