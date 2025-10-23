@@ -79,7 +79,7 @@ Your project environment should now be fully set up and running.
 
 If you are setting up from scratch, follow these steps.
 
-> We will be filling only the required fields.
+> We will be filling only the required fields. There are  two .env files to update. One is in root project folder and the other one is inside next-app folder.
 
 ---
 
@@ -101,7 +101,7 @@ Login using the credentials defined in `docker-compose.yml` under the **keycloak
    - One in the **base project directory**
    - One inside the **next-app** folder
 3. Go to **Realm Settings → Keys** tab.
-4. Copy the **RSA256 Public Key** and update the `RSA_256_KEY` value in your `.env` file.
+4. Copy the **RSA256 Public Key** and update the `RSA_256_KEY` value in your `.env` file. Also update the **NODE_KEYCLOAK_REALM** and **NEXT_PUBLIC_KEYCLOAK_REALM** with the new realm name in the .env file.
 
 ---
 
@@ -110,10 +110,11 @@ Login using the credentials defined in `docker-compose.yml` under the **keycloak
 #### Client for Next.js App
 1. Create a new client under your realm (e.g., `myclient`).
 2. Click **Next** twice and fill in:
-   - **Root URL:** `http://localhost:8090` (`8090` is the public port of nginx)
+   - **Root URL:** `http://localhost:8090`
    - **Valid Redirect URIs:** `http://localhost:8090/*`
    - **Valid Post Logout Redirect URIs:** `http://localhost:8090/*`
    - **Web Origins:** `http://localhost:8090`
+   >(`8090` is the public port of nginx)
 3. Update the `NEXT_PUBLIC_CLIENT_ID` in the `.env` file inside `next-app`.
 
 #### Client for Node.js Server
