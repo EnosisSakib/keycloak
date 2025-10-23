@@ -153,7 +153,7 @@ Login using the credentials defined in `docker-compose.yml` under the **keycloak
    - **JWT Profile Display**
    - **JWT User List Display**
    - **SAML Single Sign On – SSO Login**
-6. Click on **Settings → SAML Single Sign On – SSO Login**:
+6. Click on **SAML Single Sign On – SSO Login**:
    - Select **Keycloak** as the IDP.
    - Follow the setup or video guide provided.
 7. Go to **Settings → Permalinks → Common Settings**
