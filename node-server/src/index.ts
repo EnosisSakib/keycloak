@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import session from "express-session";
 import { router as apiRouter } from "./routes";
+const cookieParser = require("cookie-parser");
+
 dotenv.config();
 
 const app = express();
@@ -23,6 +25,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 3000;
 

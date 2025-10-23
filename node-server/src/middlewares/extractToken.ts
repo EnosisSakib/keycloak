@@ -1,14 +1,13 @@
 import { Response, NextFunction } from "express";
 import { AuthenticatedRequest } from "../types/authenticatedRequest";
 
-export const extractToken = (
-  req: AuthenticatedRequest,
-  res: Response,
-  next: NextFunction
-) => {
+export const extractToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
-  if (authHeader) {
+  if (req?.cookies?.token) {
+    req.token = req.cookies.token;
+    next();
+  } else if (authHeader) {
     const [authScheme, token] = authHeader.split(" ");
 
     if (!token) return res.status(403).json({ error: "Token missing" });
