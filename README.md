@@ -11,16 +11,17 @@ Run the following command to build and start all containers in the background:
 ```bash
 docker compose -f docker-compose.yml up --build -d
 ```
-
 ---
-
-##  2. Restore PostgreSQL Database (Keycloak)
+[Skip to Fresh Setup](#-fresh-setup)
+---
+---
+## 2. Restore PostgreSQL Database (Keycloak)
 
 ### Step 1: Copy Backup File
 Copy the backup file from your project folder to the pgAdmin storage directory:
 
 ```
-DB/backup_data_pg  →  data/pgadmin/storage/admin_admin.com/
+DB/backup_data_pg → data/pgadmin/storage/admin_admin.com/
 ```
 
 ### Step 2: Access pgAdmin
