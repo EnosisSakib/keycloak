@@ -12,7 +12,7 @@ Run the following command to build and start all containers in the background:
 docker compose -f docker-compose.yml up --build -d
 ```
 ---
-[Skip to Fresh Setup](#-fresh-setup)
+[Skip to Fresh Setup](#fresh-setup)
 ---
 ---
 ## 2. Restore PostgreSQL Database (Keycloak)
