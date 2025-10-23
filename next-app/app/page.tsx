@@ -1,72 +1,9 @@
 "use client";
-import useAuth from "./useAuth";
-import { useEffect } from "react";
 
 export default function Home() {
-  const auth = useAuth();
-
-  useEffect(() => {
-    if (auth.isLogin && auth.token) callApi();
-  }, [auth]);
-
-  const callApi = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/currentuser`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("failed to fetch data");
-      }
-
-      const data = await response.json();
-      console.log(data);
-    } catch (e) {
-      console.error(e);
-    }
-
-    if (!auth.isLogin || !auth.token) return;
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/users`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-            "Content-Type": "application/json",
-          },
-          // credentials: "include",
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("failed to fetch data");
-      }
-
-      const data = await response.json();
-      console.log(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   return (
-    <div>
-      {auth.isLogin ? (
-        <div>
-          <br></br>
-          <div>Protected</div>
-          <button onClick={auth.logout}>Logout</button>
-        </div>
-      ) : (
-        <div>Public</div>
-      )}
+    <div className="flex items-center justify-center">
+      <h1 className="absolute left-1/2 transform -translate-x-1/2 text-3xl font-bold text-center">Welcome to Project Sync</h1>
     </div>
   );
 }
