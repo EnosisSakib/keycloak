@@ -16,6 +16,12 @@ const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    if (initialized && !keycloak.authenticated) {
+      keycloak.login();
+    }
+  }, [initialized, keycloak]);
+
+  useEffect(() => {
     if (!initialized || !keycloak) return;
 
     if (keycloak.authenticated && keycloak.token) {
@@ -26,14 +32,10 @@ const useAuth = () => {
       setUser({
         name: tokenParsed?.name || tokenParsed?.preferred_username,
         email: tokenParsed?.email,
-        role: tokenParsed?.realm_access?.roles?.includes("admin")
-          ? "Admin"
-          : "User",
+        role: tokenParsed?.realm_access?.roles?.includes("admin") ? "Admin" : "User",
       });
 
-      document.cookie = `token=${encodeURIComponent(
-        keycloak.token
-      )}; path=/; max-age=${60 * 60}`;
+      document.cookie = `token=${encodeURIComponent(keycloak.token)}; path=/; max-age=${60 * 60}`;
       document.cookie = `isLogin=true; path=/; max-age=${60 * 60}`;
     } else {
       setLogin(false);
@@ -53,9 +55,7 @@ const useAuth = () => {
             setUser({
               name: tokenParsed?.name || tokenParsed?.preferred_username,
               email: tokenParsed?.email,
-              role: tokenParsed?.realm_access?.roles?.includes("admin")
-                ? "Admin"
-                : "User",
+              role: tokenParsed?.realm_access?.roles?.includes("admin") ? "Admin" : "User",
             });
           }
         } catch (err) {

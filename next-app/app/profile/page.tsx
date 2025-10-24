@@ -33,7 +33,7 @@ export default function ProfilePage() {
     );
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-muted/30 p-6">
+    <div className="flex items-center justify-center min-h-screen bg-muted/30">
       <Card className="w-full max-w-lg shadow-md">
         <CardHeader className="flex flex-col items-center text-center space-y-2">
           <Avatar className="w-20 h-20">

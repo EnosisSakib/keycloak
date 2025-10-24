@@ -2,27 +2,21 @@
 
 import React from "react";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
-import Keycloak from "keycloak-js";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { AppTopBar } from "@/components/app-topbar";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import "./globals.css";
 import useAuth from "./useAuth";
-
-const keycloak = new Keycloak({
-  url: `${process.env.NEXT_PUBLIC_KEYCLOAK_BASE_URL}/`,
-  realm: `${process.env.NEXT_PUBLIC_KEYCLOAK_REALM}`,
-  clientId: `${process.env.NEXT_PUBLIC_CLIENT_ID}`,
-});
+import keycloak from "@/lib/keycloak";
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
-  const { user, isLogin, logout } = useAuth();
+  const { user, isLogin, logout, loading } = useAuth();
 
-  if (!isLogin) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p>Loading user data...</p>
+        <p>Loading...</p>
       </div>
     );
   }
@@ -53,21 +47,16 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="antialiased bg-gray-50">
         <ReactKeycloakProvider
           authClient={keycloak}
           initOptions={{
-            onLoad: "login-required",
+            onLoad: "check-sso",
+            silentCheckSsoRedirectUri: typeof window !== "undefined" ? `${window.location.origin}/silent-check-sso.html` : undefined,
             checkLoginIframe: false,
-            redirectUri:
-              typeof window !== "undefined" ? window.location.href : undefined,
           }}
           autoRefreshToken={true}
         >
