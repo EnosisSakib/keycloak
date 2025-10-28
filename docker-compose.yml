@@ -27,7 +27,7 @@ services:
       - keycloak_network
 
   keycloak:
-    image: quay.io/keycloak/keycloak:26.0.2
+    build: ./keycloak
     container_name: keycloak
     environment:
       KC_DB: postgres
@@ -36,7 +36,6 @@ services:
       KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
       KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
-    command: start-dev
     ports:
       - "8080:8080"
     depends_on:
@@ -118,7 +117,6 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - PORT=3002
       - NODE_API_URL=http://node-server:3000
-    command: ["npm", "run", "dev"]
     depends_on:
       - node-server
       - keycloak
