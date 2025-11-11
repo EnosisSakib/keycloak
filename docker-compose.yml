@@ -36,6 +36,19 @@ services:
       KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
       KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+
+      # KC_HTTP_ENABLED: true
+      # KC_PROXY: edge
+      # # KC_LOG_LEVEL: debug
+      # KC_HOSTNAME_STRICT_BACKCHANNEL: true
+      # KC_HOSTNAME_URL: http://localhost:8090/auth/
+      # KC_PROXY_HEADERS: xforwarded
+      # KC_PROXY_ADDRESS_FORWARDING: true
+      # KC_HOSTNAME_ADMIN_URL: http://localhost:8090/auth/
+      # KC_HOSTNAME: http://localhost:8090/auth/
+      # KC_HOSTNAME_BACKCHANNEL_DYNAMIC: true
+      # KC_HOSTNAME_DEBUG: true
+
     ports:
       - "8080:8080"
     depends_on:
@@ -133,6 +146,7 @@ services:
       - node-server
       - wordpress
       - next-app
+      - keycloak
     networks:
       - keycloak_network
 
