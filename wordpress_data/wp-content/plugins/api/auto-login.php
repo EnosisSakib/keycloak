@@ -10,11 +10,6 @@ add_action('init', 'keycloak_online_authenticate_user');
 
 function keycloak_online_authenticate_user() {
 
-
-    if (is_user_logged_in()) {
-        return;
-    }
-
     $token = $_COOKIE['token'] ?? '';
 
     $api_url = 'http://node-server:3000/currentuser';
@@ -31,14 +26,18 @@ function keycloak_online_authenticate_user() {
     $response = wp_remote_post($api_url, $args);
 
     if (is_wp_error($response)) {
-        error_log('Keycloak verify failed: ' . $response->get_error_message());
+        wp_logout();
         return;
     }
 
     $code = wp_remote_retrieve_response_code($response);
+   
     if ($code !== 200) {
-
-        error_log('Keycloak verification returned status ' . $code);
+        wp_logout();
+        return;
+    }
+   
+    if (is_user_logged_in()) {
         return;
     }
 
