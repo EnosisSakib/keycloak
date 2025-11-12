@@ -46,7 +46,7 @@ const data = {
         },
         {
           title: "Admin Console",
-          url: "/wordpress/wp-login.php",
+          url: "/wordpress/wp-admin/",
         },
       ],
     },
