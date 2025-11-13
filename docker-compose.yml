@@ -135,6 +135,19 @@ services:
       - keycloak
     networks:
       - keycloak_network
+
+  aspnetapp:
+    build: ./aspnetapp
+    container_name: aspnetapp
+    ports:
+      - 5000:5000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    networks:
+      - keycloak_network
+
+
   nginx:
     image: nginx:latest
     container_name: nginx
