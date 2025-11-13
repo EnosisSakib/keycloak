@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file displays all the add-ons listed in the plugin.
  *
@@ -42,10 +43,10 @@ function mo_saml_show_addons_page() {
 		'ip_whitelisting_addon'       => __( 'Allows the whitelisted users to bypass redirection to the IDP for authentication based on their IP address.', 'miniorange-saml-20-single-sign-on' ),
 		'azure_multi_tenant_addon'    => __( 'It reduces the requirement of configuring multiple tenants separately. All the users from the configured tenants will be able to perform SSO login using only a single Azure AD application with a common endpoint.', 'miniorange-saml-20-single-sign-on' ),
 	);
-	?>
+?>
 	<div id="miniorange-addons" style="position:relative;z-index: 1">
 
-	<div class="mo-saml-bootstrap-row mo-saml-bootstrap-container-fluid" id="addon-tab-form">
+		<div class="mo-saml-bootstrap-row mo-saml-bootstrap-container-fluid" id="addon-tab-form">
 			<div class="mo-saml-bootstrap-col-md-8 mo-saml-bootstrap-mt-4 mo-saml-bootstrap-ms-5">
 			<?php
 			$is_header_displayed     = false;
@@ -59,45 +60,47 @@ function mo_saml_show_addons_page() {
 			}
 
 			if ( ! empty( $display_addons ) ) {
-				?>
-					<h4 class="form-head" id="recommended_section"><?php esc_html_e( 'Recommended Add-ons for you', 'miniorange-saml-20-single-sign-on' ); ?></h4> 
-																						<?php
-																						foreach ( $display_addons as $key => $value ) {
-																							$addon                      = $key;
-																							$addons_displayed[ $addon ] = $addon;
-																							if ( ! $is_header_displayed ) {
-																								$is_header_displayed = true;
-																							}
-																							get_addon_tile( $addon, Mo_Saml_Options_Addons::mo_saml_translate( $addon ), $addon_desc[ $addon ], Mo_Saml_Options_Addons::$addons_url[ $addon ] );
-																						}
-																						if ( ! $active_external_plugins ) {
-																							?>
-						<div class = "line_break_recommended"></div>
-																							<?php
-																						}
-			}
-
-			if ( $is_header_displayed ) {
-				?>
-					<div class = "line_break_checkout" style="display: flex; justify-content: space-between; margin-top: 30px;"></div>
-				<?php
-			}
 			?>
-				<h4 class="form-head mo-saml-bootstrap-mb-4"><?php esc_html_e( 'Check out all our add-ons', 'miniorange-saml-20-single-sign-on' ); ?></h4>
-					<div class="mo-saml-bootstrap-d-flex add-ons-row">
-						<?php
-						foreach ( $addon_desc as $key => $value ) {
-							if ( ! in_array( $key, $addons_displayed, true ) ) {
-								get_addon_tile( $key, Mo_Saml_Options_Addons::mo_saml_translate( $key ), $value, Mo_Saml_Options_Addons::$addons_url[ $key ] );
-							}
+				<h4 class="form-head" id="recommended_section"><?php esc_html_e( 'Recommended Add-ons for you', 'miniorange-saml-20-single-sign-on' ); ?></h4>
+				<div class="mo-saml-bootstrap-d-flex add-ons-row">
+					<?php
+					foreach ( $display_addons as $key => $value ) {
+						$addon                    = $key;
+						$addons_displayed[ $addon ] = $addon;
+						if ( ! $is_header_displayed ) {
+							$is_header_displayed = true;
 						}
-						?>
-					</div>
+						get_addon_tile( $addon, Mo_Saml_Options_Addons::mo_saml_translate( $addon ), $addon_desc[ $addon ], Mo_Saml_Options_Addons::$addons_url[ $addon ] );
+					}
+					if ( ! $active_external_plugins ) {
+					?>
+
+						<?php
+						}
+					}
+
+				if ( $is_header_displayed ) {
+					?>
+				</div>
+				<div class="line_break_checkout" style="display: flex; justify-content: space-between; margin-top: 30px;"></div>
+			<?php
+				}
+			?>
+			<h4 class="form-head mo-saml-bootstrap-mb-4"><?php esc_html_e( 'Check out all our add-ons', 'miniorange-saml-20-single-sign-on' ); ?></h4>
+			<div class="mo-saml-bootstrap-d-flex add-ons-row">
+				<?php
+				foreach ( $addon_desc as $key => $value ) {
+					if ( ! in_array( $key, $addons_displayed, true ) ) {
+						get_addon_tile( $key, Mo_Saml_Options_Addons::mo_saml_translate( $key ), $value, Mo_Saml_Options_Addons::$addons_url[ $key ] );
+					}
+				}
+				?>
+			</div>
 			</div>
 			<?php mo_saml_display_support_form(); ?>
 		</div>
-	</div> 
-	<?php
+	</div>
+<?php
 }
 
 /**
@@ -110,18 +113,18 @@ function mo_saml_show_addons_page() {
  * @return void
  */
 function get_addon_tile( $addon_name, $addon_title, $addon_desc, $addon_url ) {
-		$icon_url = Mo_SAML_Utilities::mo_saml_get_plugin_dir_url() . 'images/addons_logos/' . $addon_name . '.webp';
+	$icon_url = Mo_SAML_Utilities::mo_saml_get_plugin_dir_url() . 'images/addons_logos/' . $addon_name . '.webp';
 	?>
-			<div class="mo-saml-add-ons-cards mo-saml-bootstrap-mt-3 mo-saml-bootstrap-bg-white">
-				<h4 class="mo-saml-addons-head"><?php echo esc_attr( $addon_title ); ?></h4>
-				<p class="mo-saml-bootstrap-pe-4 mo-saml-bootstrap-ps-4 mo-saml-add-on-card-desc"><?php echo esc_html( $addon_desc ); ?></p>
-				<div class="mo-saml-bootstrap-d-flex mo-saml-bootstrap-align-items-center add-on-card-bottom">
-					<a class="mo-saml-addons-readmore" href="<?php echo esc_url( $addon_url ); ?>" target="_blank"><?php esc_html_e( 'Learn More', 'miniorange-saml-20-single-sign-on' ); ?></a>
-					<img src="<?php echo esc_url( $icon_url ); ?>" class="mo-saml-addons-logo" alt=" Image">
-				</div>
-				<span class="mo-saml-add-ons-rect"></span>
-				<span class="mo-saml-add-ons-tri"></span>
-			</div>
+	<div class="mo-saml-add-ons-cards mo-saml-bootstrap-mt-3 mo-saml-bootstrap-bg-white">
+		<h4 class="mo-saml-addons-head"><?php echo esc_attr( $addon_title ); ?></h4>
+		<p class="mo-saml-bootstrap-pe-4 mo-saml-bootstrap-ps-4 mo-saml-add-on-card-desc"><?php echo esc_html( $addon_desc ); ?></p>
+		<div class="mo-saml-bootstrap-d-flex mo-saml-bootstrap-align-items-center add-on-card-bottom">
+			<a class="mo-saml-addons-readmore" href="<?php echo esc_url( $addon_url ); ?>" target="_blank"><?php esc_html_e( 'Learn More', 'miniorange-saml-20-single-sign-on' ); ?></a>
+			<img src="<?php echo esc_url( $icon_url ); ?>" class="mo-saml-addons-logo" alt=" Image">
+		</div>
+		<span class="mo-saml-add-ons-rect"></span>
+		<span class="mo-saml-add-ons-tri"></span>
+	</div>
 	<?php
 }
 /**
@@ -136,6 +139,10 @@ function mo_saml_external_active_plugins() {
 			$active_plugins[ $key ] = $value;
 		}
 	}
+	$active_plugins['scim']             = 'scim';
+	$active_plugins['page_restriction'] = 'page_restriction';
+	$active_plugins['file_prevention']  = 'file_prevention';
+	
 	return $active_plugins;
 }
 ?>

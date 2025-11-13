@@ -213,7 +213,7 @@ class Mo_Saml_Options_Plugin_Constants extends Mo_SAML_Basic_Enum {
 	const CMS_NAME         = 'WP';
 	const APPLICATION_NAME = 'WP miniOrange SAML 2.0 SSO Plugin';
 	const APPLICATION_TYPE = 'SAML';
-	const VERSION          = '5.3.2';
+	const VERSION          = '5.3.5';
 	const HOSTNAME         = 'https://login.xecurify.com';
 	const WP_VERSION       = '6.8';
 	const PLUGIN_FILE      = 'miniorange-saml-20-single-sign-on/login.php';
@@ -1080,6 +1080,8 @@ class Mo_Saml_Messages extends Mo_SAML_Basic_Enum {
 			'CALL_SETUP_DETAILS_EMPTY' => __( 'Please fill up Schedule Call Details to submit your query.', 'miniorange-saml-20-single-sign-on' ),
 			'QUERY_NOT_SUBMITTED'      => __( 'Your query could not be submitted. Please try again.', 'miniorange-saml-20-single-sign-on' ),
 			'QUERY_SUBMITTED'          => __( 'Thanks for getting in touch! We will reach out on your email shortly.', 'miniorange-saml-20-single-sign-on' ),
+			'CALL_REQUEST_SUBMIT'      => __( 'Thanks for getting in touch! We will reach out to you shortly.', 'miniorange-saml-20-single-sign-on' ),
+			'CALL_REQUEST_NOT_SUBMIT'  => __( 'Your callback request could not be submitted. Please try again.', 'miniorange-saml-20-single-sign-on' ),
 			'UPDATED_DEFAULT_ROLE'     => __( 'Role Mapping details saved successfully.', 'miniorange-saml-20-single-sign-on' ),
 			'DEMO_REQUEST_FAILED'      => __( 'Something went wrong. Please reach out to us using the Support/Contact Us form to get help with the demo.', 'miniorange-saml-20-single-sign-on' ),
 			'PASSWORD_PATTERN_INVALID' => __( 'Minimum 6 characters should be present. Maximum 15 characters should be present. Only following symbols (!@#.$%^&*-_) are allowed.', 'miniorange-saml-20-single-sign-on' ),

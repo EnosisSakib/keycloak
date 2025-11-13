@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP-Translations - SAML Single Sign On – SSO Login\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-06-17 17:30+0530\n"
+"PO-Revision-Date: 2025-11-07 16:35+0530\n"
 "Last-Translator: FX Bénard <fx@wp-translations.pro>\n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -40,7 +40,7 @@ msgstr "プラグイン設定に戻る"
 
 #: views/mo-saml-debug-logs.php:50
 msgid "If you are facing any issues with the SSO, please follow these steps for easier debugging"
-msgstr "SSOで問題が発生した場合は、デバッグを容易にするために次の手順に従ってください。"
+msgstr "SSOで問題が発生した場合は、デバッグを容易にするために次の手順に従ってください"
 
 #: views/mo-saml-debug-logs.php:52
 msgid "Step 1:"
@@ -58,7 +58,7 @@ msgstr "miniOrange SAMLデバッグログを有効にする"
 msgid "Clear Log Files"
 msgstr "ログファイルをクリア"
 
-#: views/mo-saml-debug-logs.php:80
+#: views/mo-saml-debug-logs.php:80 views/mo-saml-redirection-sso-links.php:292
 msgid "Note: "
 msgstr "注: "
 
@@ -68,7 +68,7 @@ msgstr "wp-config.php が書き込み可能でない場合"
 
 #: views/mo-saml-debug-logs.php:81
 msgid "follow the steps below to Enable debug logs Manually"
-msgstr "デバッグログを手動で有効にするには、以下の手順に従ってください。"
+msgstr "デバッグログを手動で有効にするには、以下の手順に従ってください"
 
 #: views/mo-saml-debug-logs.php:85
 msgid "Copy this code"
@@ -100,7 +100,7 @@ msgstr "デバッグログをダウンロード"
 
 #: views/mo-saml-debug-logs.php:108
 msgid "Send this file to us at"
-msgstr "このファイルを下記までお送りください。"
+msgstr "このファイルを下記までお送りください"
 
 #: views/mo-saml-redirection-sso-links.php:133
 msgid "Login with #IDP#"
@@ -116,7 +116,7 @@ msgstr "IdP のシングル サインオン サービス URL (HTTP-Redirect bind
 
 #: views/mo-saml-service-provider-setup.php:212
 msgid "Copy and Paste the content from the downloaded certificate or copy the content enclosed in X509Certificate tag (has parent tag KeyDescriptor use=signing) in IdP-Metadata XML file"
-msgstr "ダウンロードした証明書の内容をコピーして貼り付けるか、IdP-Metadata XML ファイルの X509Certificate タグ (親タグ KeyDescriptor use=signing を持つ) で囲まれた内容をコピーします。"
+msgstr "ダウンロードした証明書の内容をコピーして貼り付けるか、IdP-Metadata XML ファイルの X509Certificate タグ (親タグ KeyDescriptor use=signing を持つ) で囲まれた内容をコピーします"
 
 #: includes/lib/class-mo-saml-options-enum.php:1068
 msgid "Please upload a valid metadata file or a valid metadata URL."
@@ -296,7 +296,7 @@ msgstr "ファイルが存在しません。"
 
 #: class-mo-saml-wp-config-editor.php:64 class-mo-saml-wp-config-editor.php:74
 msgid "Failed to update the WP config file. Please enable the debug-logs manually"
-msgstr "WP 設定ファイルの更新に失敗しました。デバッグログを手動で有効にしてください。"
+msgstr "WP 設定ファイルの更新に失敗しました。デバッグログを手動で有効にしてください"
 
 #: class-mo-saml-wp-config-editor.php:78
 msgid "Configuration Saved Successfully"
@@ -325,10 +325,6 @@ msgstr "検索ボックスで「これでログイン 」を検索し、この�
 #: views/mo-saml-redirection-sso-links.php:241
 msgid "Click on the \"Update\" button at the top right to save the widget settings."
 msgstr "ウィジェットの設定を保存するには、右上の「更新」ボタンをクリックします。"
-
-#: views/mo-saml-redirection-sso-links.php:52
-msgid "Option 1: Use a Single Sign-On button"
-msgstr "オプション1: シングルサインオンボタンを使用する"
 
 #: views/mo-saml-plugin-core.php:65
 msgid "Make sure to check out the list of supported"
@@ -475,7 +471,7 @@ msgstr "User Sync for Azure AD / Azure B2C プラグインは、Microsoft Azure 
 #: includes/lib/class-mo-saml-options-enum.php:258
 #: includes/lib/class-mo-saml-options-enum.php:266
 msgid "Object Data Sync For Salesforce plugin provides a bi-directional data synchronization between WP and Salesforce objects"
-msgstr "Object Data Sync For Salesforceプラグインは、WPとSalesforceオブジェクト間の双方向データ同期を提供します。"
+msgstr "Object Data Sync For Salesforceプラグインは、WPとSalesforceオブジェクト間の双方向データ同期を提供します"
 
 #: includes/lib/class-mo-saml-options-enum.php:260
 #: includes/lib/class-mo-saml-options-enum.php:268
@@ -768,7 +764,7 @@ msgstr "マッピングされていないユーザーが SSO 経由でサイト�
 
 #: views/mo-saml-feedback-form.php:140
 msgid "Not happy with our plugin? Let us know what went wrong"
-msgstr "プラグインにご満足いただけませんか? 何が問題なのかお知らせください。"
+msgstr "プラグインにご満足いただけませんか? 何が問題なのかお知らせください"
 
 #: views/mo-saml-attribute-role-mapping.php:201
 msgid "Enable this option if you do not want to assign any roles to unmapped users."
@@ -776,7 +772,7 @@ msgstr "マッピングされていないユーザーに権限グループを割
 
 #: views/mo-saml-feedback-form.php:142
 msgid "Found any issues? Let us know and we'll fix it ASAP"
-msgstr "何か問題が見つかりましたか？ お知らせください。できるだけ早く修正いたします。"
+msgstr "何か問題が見つかりましたか？ お知らせください。できるだけ早く修正いたします"
 
 #: views/mo-saml-notice.php:25
 msgid "It seems you are using"
@@ -788,7 +784,7 @@ msgstr "何かご不明な点がございましたらご連絡ください"
 
 #: views/mo-saml-notice.php:25
 msgid "as your IDP. Hence, you might be interested in our other"
-msgstr "IDPとしてご登録ください。"
+msgstr "IDPとしてご登録ください"
 
 #: views/mo-saml-feedback-form.php:146
 msgid "We're glad that you are happy with our plugin"
@@ -858,7 +854,7 @@ msgstr "設定が正常に更新されました。"
 
 #: views/mo-saml-plugin-core.php:211
 msgid "Facing issues? Check out the Troubleshooting options available in the plugin"
-msgstr "問題が発生した場合は、プラグインで利用可能なトラブルシューティングオプションを確認してください。"
+msgstr "問題が発生した場合は、プラグインで利用可能なトラブルシューティングオプションを確認してください"
 
 #: includes/lib/class-mo-saml-options-enum.php:1083
 msgid "Role Mapping details saved successfully."
@@ -894,11 +890,11 @@ msgstr "最低 6 文字が必要です。最大 15 文字が必要です。次�
 
 #: views/mo-saml-redirection-sso-links.php:78
 msgid "Customization of SSO/Login button is available in Premium, Enterprise and All-Inclusive versions of the plugin"
-msgstr "SSO/ログインボタンのカスタマイズは、プラグインのPremium、Enterprise、All-Inclusive バージョンで利用できます。"
+msgstr "SSO/ログインボタンのカスタマイズは、プラグインのPremium、Enterprise、All-Inclusive バージョンで利用できます"
 
 #: includes/lib/class-mo-saml-options-enum.php:1086
 msgid "Passwords do not match."
-msgstr "パスワードが一致しません"
+msgstr "パスワードが一致しません。"
 
 #: views/mo-saml-redirection-sso-links.php:80
 msgid "Customize Single Sign-On Button"
@@ -1022,7 +1018,7 @@ msgstr "設定"
 
 #: views/mo-saml-redirection-sso-links.php:272
 msgid "Auto-Redirection from site is configurable in Standard, Premium, Enterprise and All-Inclusive versions of the plugin"
-msgstr "サイトからの自動リダイレクトは、プラグインのStandard、Premium、Enterprise、All-Inclusive バージョンで設定可能です。"
+msgstr "サイトからの自動リダイレクトは、プラグインのStandard、Premium、Enterprise、All-Inclusive バージョンで設定可能です"
 
 #: views/mo-saml-service-provider-metadata.php:59
 msgid "Note:"
@@ -1059,7 +1055,7 @@ msgstr "プレミアム"
 
 #: views/mo-saml-redirection-sso-links.php:325
 msgid "Auto-Redirection from WordPress is configurable in Standard, Premium, Enterprise and All-Inclusive versions of the plugin"
-msgstr "WordPress からの自動リダイレクトは、プラグインのStandard、Premium、Enterprise、All-Inclusive バージョンで設定可能です。"
+msgstr "WordPress からの自動リダイレクトは、プラグインのStandard、Premium、Enterprise、All-Inclusive バージョンで設定可能です"
 
 #: includes/lib/class-mo-saml-options-enum.php:521
 msgid "SSO Login Audit"
@@ -1067,7 +1063,7 @@ msgstr "SSO ログイン監査"
 
 #: views/mo-saml-service-provider-metadata.php:59
 msgid "If you have already shared the above URLs or Metadata with your IdP, do"
-msgstr "上記の URL またはメタデータをすでにIdPと共有している場合は、"
+msgstr "上記の URL またはメタデータをすでにIdPと共有している場合は"
 
 #: views/mo-saml-service-provider-setup.php:183
 #: views/mo-saml-service-provider-setup.php:192
@@ -1098,7 +1094,7 @@ msgstr "SCIM ユーザープロビジョニング"
 
 #: views/mo-saml-service-provider-metadata.php:64
 msgid "Configurable ACS URL / SP Base URL available in the"
-msgstr "設定可能な ACS URL / SP ベースURLは、"
+msgstr "設定可能な ACS URL / SP ベースURLは"
 
 #: includes/lib/class-mo-saml-options-enum.php:525
 msgid "SSO Session Management"
@@ -1142,7 +1138,7 @@ msgstr "メタデータ URL を提供する"
 
 #: views/mo-saml-plugin-core.php:61
 msgid " If you do not find your IDP guide here, do not worry! mail us at <a href=\"mailto:samlsupport@xecurify.com\">samlsupport@xecurify.com</a>"
-msgstr " ここで IDP ガイドが見つからない場合は、ご心配なく! <a href=\"mailto:samlsupport@xecurify.com\">samlsupport@xecurify.com</a> にメールでお問い合わせください。"
+msgstr " ここで IDP ガイドが見つからない場合は、ご心配なく! <a href=\"mailto:samlsupport@xecurify.com\">samlsupport@xecurify.com</a> にメールでお問い合わせください"
 
 #: views/mo-saml-service-provider-metadata.php:130
 msgid "Note the following to configure the IDP"
@@ -1256,7 +1252,7 @@ msgstr "パスワードを確認してください"
 #: views/mo-saml-service-provider-setup.php:192
 #: views/mo-saml-service-provider-setup.php:201
 msgid "in Your IdP-Metadata XML file enclosed in"
-msgstr "IdPメタデータXMLファイルには、"
+msgstr "IdPメタデータXMLファイルには"
 
 #: views/mo-saml-account-setup.php:144
 msgid "Register"
@@ -1308,7 +1304,7 @@ msgstr "ウィジェット。"
 
 #: views/mo-saml-support-form.php:34
 msgid "Call us at +1 978 658 9387 in case of any help"
-msgstr "何かご不明な点がございましたら、+1 978 658 9387 までお電話ください。"
+msgstr "何かご不明な点がございましたら、+1 978 658 9387 までお電話ください"
 
 #: views/mo-saml-redirection-sso-links.php:259
 msgid "Option 3: Auto-Redirection from site"
@@ -1336,7 +1332,7 @@ msgstr "IP Whitelisting アドオン"
 
 #: views/mo-saml-redirection-sso-links.php:327
 msgid "1. Select this option if you want the users visiting any of the following URLs to get redirected to your configured IdP for authentication:"
-msgstr "1. 次のいずれかの URL にアクセスするユーザーを、認証のために設定された IdP にリダイレクトする場合は、このオプションを選択します。"
+msgstr "1. 次のいずれかの URL にアクセスするユーザーを、認証のために設定された IdP にリダイレクトする場合は、このオプションを選択します:"
 
 #: includes/lib/class-mo-saml-options-enum.php:535
 msgid "Azure Multitenant Add-on"
@@ -1368,7 +1364,7 @@ msgstr "これにより、複数のテナントを個別に構成する必要性
 
 #: views/mo-saml-redirection-sso-links.php:342
 msgid "Checking this option creates a backdoor to login to your Website using WordPress credentials incase you get locked out of your IdP"
-msgstr "このオプションをチェックすると、IdP からロックアウトされた場合に WordPress の資格情報を使用してサイトにログインするためのバックドアが作成されます。"
+msgstr "このオプションをチェックすると、IdP からロックアウトされた場合に WordPress の資格情報を使用してサイトにログインするためのバックドアが作成されます"
 
 #: views/mo-saml-service-provider-metadata.php:141
 msgid "SP-EntityID / Issuer"
@@ -1582,12 +1578,12 @@ msgid "Role will be assigned only to new users. Existing WordPress users' role r
 msgstr "権限グループは新しいユーザーにのみ割り当てられます。既存の WordPress ユーザーの権限グループは同じままです。"
 
 #: views/mo-saml-attribute-role-mapping.php:187
-msgid "Do not auto create users if roles are not mapped here :"
-msgstr "ここで権限グループがマップされていない場合は、ユーザーを自動作成しないでください。"
+msgid "Do not auto create users if roles are not mapped here"
+msgstr "ここで権限グループがマップされていない場合は、ユーザーを自動作成しないでください"
 
 #: views/mo-saml-attribute-role-mapping.php:197
-msgid "Do not assign role to unlisted users :"
-msgstr "リストにないユーザーには権限グループを割り当てないでください:"
+msgid "Do not assign role to unlisted users"
+msgstr "リストにないユーザーには権限グループを割り当てないでください"
 
 #: views/mo-saml-attribute-role-mapping.php:168
 msgid "Default Role :"
@@ -1620,3 +1616,219 @@ msgstr "通話を設定するにはこのオプションを有効にします"
 #: views/mo-saml-support-form.php:53
 msgid "TimeZone"
 msgstr "タイムゾーン"
+
+#: login.php:135
+msgid "Following PHP extensions (%s) are disabled which are important for SSO configuration. Please enable these extensions to continue using SSO on your site."
+msgstr "以下の PHP 拡張機能 (%s) が無効になっています。これらは SSO 設定に重要です。SSO をサイトで継続して使用するには、これらの拡張機能を有効にしてください。"
+
+#: login.php:135 views/mo-saml-plugin-core.php:19
+#: views/mo-saml-plugin-core.php:26 views/mo-saml-plugin-core.php:33
+msgid "Warning:"
+msgstr "警告:"
+
+#: views/mo-saml-plugin-core.php:20 views/mo-saml-plugin-core.php:27
+#: views/mo-saml-plugin-core.php:34
+msgid "is not installed or disabled"
+msgstr "がインストールされていないか、無効になっています"
+
+#: views/mo-saml-plugin-core.php:164
+msgid "IDP Configuration"
+msgstr "IDP 設定"
+
+#: class-mo-saml-utilities.php:250
+msgid "Warning: Plugin disabled because required PHP extensions are missing."
+msgstr "警告: 必要な PHP 拡張機能が不足しているため、プラグインが無効になっています。"
+
+#: class-mo-saml-utilities.php:250
+msgid "Please enable the following PHP extensions:"
+msgstr "以下の PHP 拡張機能を有効にしてください:"
+
+#: class-mo-saml-utilities.php:256
+msgid "Please refresh the page after enabling the above extensions."
+msgstr "上記の拡張機能を有効にした後、ページを更新してください。"
+
+#: class-mo-saml-utilities.php:258
+msgid "For any further issues, please send an email to"
+msgstr "その他の問題については、以下にメールをお送りください"
+
+#: mo-saml-settings-page.php:130
+msgid "Error Code:"
+msgstr "エラーコード:"
+
+#: mo-saml-settings-page.php:131
+msgid "Error:"
+msgstr "エラー:"
+
+#: mo-saml-settings-page.php:133
+msgid "Status Message in the SAML Response:"
+msgstr "SAML レスポンスのステータスメッセージ:"
+
+#: mo-saml-settings-page.php:153
+msgid "Click here to Fix Issue"
+msgstr "問題を修正するにはここをクリック"
+
+#: mo-saml-settings-page.php:157
+msgid "To know more about the issue, please go through the"
+msgstr "問題の詳細については、以下をご確認ください"
+
+#: mo-saml-settings-page.php:157
+msgid "FAQ"
+msgstr "FAQ"
+
+#: mo-saml-settings-page.php:160
+msgid "Solution:"
+msgstr "解決策:"
+
+#: mo-saml-settings-page.php:163
+msgid "Done"
+msgstr "完了"
+
+#: mo-saml-settings-page.php:164
+msgid "To fix the issue you are facing, Please go through this"
+msgstr "発生している問題を修正するには、以下をご確認ください"
+
+#: views/mo-saml-support-form.php:43
+msgid "Send us your query via Email"
+msgstr "メールでお問い合わせを送信してください"
+
+#: views/mo-saml-support-form.php:54
+msgid "Request Callback"
+msgstr "コールバックをリクエスト"
+
+#: views/mo-saml-redirection-sso-links.php:297
+msgid "Replace the %s with the url of the Page."
+msgstr "%sをページのURLに置き換えてください。"
+
+#: views/mo-saml-service-provider-setup.php:241
+#: views/mo-saml-service-provider-setup.php:367
+msgid "Only alphabets, numbers and underscores are allowed as the Identity Provider name."
+msgstr "アイデンティティプロバイダー名として使用できるのは、アルファベット、数字、アンダースコアのみです。"
+
+#: views/mo-saml-service-provider-setup.php:254
+msgid "You can find the <strong>EntityID</strong> in Your IdP-Metadata XML file enclosed in <code>EntityDescriptor</code> tag having attribute as <code>entityID</code>"
+msgstr "<strong>EntityID</strong>は、IdPメタデータXMLファイル内の<code>entityID</code>属性を持つ<code>EntityDescriptor</code>タグで囲まれた部分にあります"
+
+#: views/mo-saml-service-provider-setup.php:267
+msgid "You can find the <strong>SAML Login URL</strong> in Your IdP-Metadata XML file enclosed in <code>SingleSignOnService</code> tag (Binding type: HTTP-Redirect)"
+msgstr "<strong>SAML ログイン URL</strong>は、IdPメタデータXMLファイル内の<code>SingleSignOnService</code>タグ（バインディングタイプ: HTTP-Redirect）で囲まれた部分にあります"
+
+#: views/mo-saml-service-provider-setup.php:289
+msgid "Format of the certificate -<br><strong>-----BEGIN CERTIFICATE-----<br>XXXXXXXXXXXXXXXXXXXXXXXXXXX<br>-----END CERTIFICATE-----</strong>"
+msgstr "証明書の形式 -<br><strong>-----BEGIN CERTIFICATE-----<br>XXXXXXXXXXXXXXXXXXXXXXXXXXX<br>-----END CERTIFICATE-----</strong>"
+
+#: views/mo-saml-service-provider-setup.php:305
+msgid "Uses iconv encoding to convert X509 certificate into correct encoding."
+msgstr "iconvエンコーディングを使用してX509証明書を正しいエンコーディングに変換します。"
+
+#: views/mo-saml-service-provider-setup.php:318
+msgid "Disable this toggle to disable the check of time validity for SAML assertion."
+msgstr "このトグルを無効にすると、SAMLアサーションの有効期間チェックが無効になります。"
+
+#: views/mo-saml-plugin-core.php:138
+msgid "Try Live Demo"
+msgstr "ライブデモを試す"
+
+#: views/mo-saml-redirection-sso-links.php:53
+msgid "Option 1: Use a Single Sign-On button"
+msgstr "オプション1: シングルサインオンボタンを使用する"
+
+#: views/mo-saml-redirection-sso-links.php:272
+msgid "Option 2: SSO Links"
+msgstr "オプション2: SSOリンク"
+
+#: views/mo-saml-redirection-sso-links.php:310
+msgid "Option 3: Use a ShortCode"
+msgstr "オプション3: ショートコードを使用する"
+
+#: views/mo-saml-redirection-sso-links.php:233
+msgid "Option 4: Use a Widget"
+msgstr "オプション4: ウィジェットを使用する"
+
+#: views/mo-saml-redirection-sso-links.php:350
+msgid "Option 5: Auto-Redirection from site"
+msgstr "オプション5: サイトからの自動リダイレクト"
+
+#: views/mo-saml-redirection-sso-links.php:403
+msgid "Option 6: Auto-Redirection from WordPress Login"
+msgstr "オプション6: WordPress ログインからの自動リダイレクト"
+
+#: views/mo-saml-support-form.php:34
+msgid "We're Here to Help 24x7"
+msgstr "24時間365日サポート"
+
+#: views/mo-saml-support-form.php:36
+msgid "(Send your queries or custom requirements)"
+msgstr "（お問い合わせやカスタム要件をお送りください）"
+
+#: views/mo-saml-support-form.php:46
+msgid "Send Email"
+msgstr "メールを送信"
+
+#: views/mo-saml-redirection-sso-links.php:284
+msgid "Use the following link to add on your HTML Pages for users to initiate SSO from the site:"
+msgstr "サイトからユーザーがSSOを開始できるように、HTMLページに追加する次のリンクを使用してください："
+
+#: views/mo-saml-redirection-sso-links.php:292
+msgid "If you want to redirect the user to a Page after the authentication, then use the SSO Link as given below:"
+msgstr "認証後にユーザーをページにリダイレクトする場合は、以下のSSOリンクを使用してください："
+
+#: views/mo-saml-support-form.php:57
+msgid "Send Request"
+msgstr "リクエストを送信"
+
+#: views/mo-saml-service-provider-setup.php:206
+#: views/mo-saml-service-provider-setup.php:322
+msgid "Enter Identity Provider Name (e.g. ADFS, SimpleSAML)"
+msgstr "アイデンティティプロバイダー名を入力してください（例：ADFS、SimpleSAML）"
+
+#: views/mo-saml-service-provider-setup.php:218
+msgid "Get entityID attribute in EntityDescriptor tag"
+msgstr "EntityDescriptorタグ内のentityID属性を取得"
+
+#: views/mo-saml-service-provider-setup.php:230
+msgid "Get Location value in SingleSignOnService (HTTP-Redirect) tag "
+msgstr "SingleSignOnService（HTTP-Redirect）タグ内のLocation値を取得"
+
+#: views/mo-saml-service-provider-setup.php:242
+msgid "Format of the certificate: [ No need of remaining ]"
+msgstr "証明書の形式：[残りの部分は不要]"
+
+#: views/mo-saml-service-provider-setup.php:351
+msgid "Public URL to your IdP metadata XML. The plugin will fetch and parse it."
+msgstr "IdPメタデータXMLの公開URL。プラグインが取得して解析します。"
+
+#: views/mo-saml-service-provider-setup.php:351
+msgid "Ensure this URL is reachable from your site and returns valid SAML metadata."
+msgstr "このURLがサイトから到達可能で、有効なSAMLメタデータを返すことを確認してください。"
+
+#: views/mo-saml-service-provider-setup.php:323
+msgid "Required. Allowed: letters, numbers, and underscore (_). No spaces."
+msgstr "必須。許可される文字：英字、数字、アンダースコア（_）。スペースは使用できません。"
+
+#: views/mo-saml-service-provider-setup.php:323
+msgid "Example: ADFS or SimpleSAML."
+msgstr "例：ADFSまたはSimpleSAML。"
+
+#: views/mo-saml-redirection-sso-links.php:93 includes/js/settings.js:427
+msgid "View More"
+msgstr "もっと見る"
+
+#: includes/js/settings.js:422
+msgid "View Less"
+msgstr "折りたたむ"
+
+#: views/mo-saml-redirection-sso-links.php:95
+msgid "Click \"View More\" to customize button appearance, colors, size, and text options."
+msgstr "「もっと見る」をクリックして、ボタンの外観、色、サイズ、テキストオプションをカスタマイズします。"
+
+#: views/mo-saml-redirection-sso-links.php:244
+msgid "Option 3: Use a Widget"
+msgstr "オプション3: ウィジェットを使用する"
+
+#: views/mo-saml-redirection-sso-links.php:351
+msgid "Enable this option to easily add an IDP Login Button on your pages using a shortcode."
+msgstr "このオプションを有効にすると、ショートコードを使用してページにIDPログインボタンを簡単に追加できます。"
+
+#: views/mo-saml-support-form.php:34
+msgid "Send your queries or custom requirements"
+msgstr "お問い合わせやカスタム要件をお送りください"

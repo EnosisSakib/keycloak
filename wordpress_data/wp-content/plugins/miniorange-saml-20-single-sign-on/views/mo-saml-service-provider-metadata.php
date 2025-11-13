@@ -45,25 +45,34 @@ function mo_saml_display_sp_endpoints_config( $sp_base_url, $sp_entity_id ) {
 		<?php wp_nonce_field( 'mo_saml_update_idp_settings_option' ); ?>
 		<input type="hidden" name="option" value="mo_saml_update_idp_settings_option" />
 		<div class="mo-saml-bootstrap-p-4 shadow-cstm mo-saml-bootstrap-bg-white mo-saml-bootstrap-rounded mo-saml-bootstrap-mt-4">
-			<div class="mo-saml-bootstrap-row align-items-top">
-				<div class="mo-saml-bootstrap-col-md-12 entity-info">
+			<div class="mo-saml-bootstrap-row align-items-center">
+				<div class="mo-saml-bootstrap-col-md-11 entity-info">
 					<h4 class="form-head"><?php esc_html_e( 'Service Provider Endpoints', 'miniorange-saml-20-single-sign-on' ); ?></h4>
 				</div>
+			
 			</div>
-			<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-4">
-				<div class="mo-saml-bootstrap-col-md-3">
-					<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'SP EntityID / Issuer :', 'miniorange-saml-20-single-sign-on' ); ?></h6>
-				</div>
-				<div class="mo-saml-bootstrap-col-md-9">
-					<input type="text" name="mo_saml_sp_entity_id" title="Please enter a valid value" pattern="[^\s]+\s*$" placeholder="<?php esc_attr_e( 'Enter Service Provider Entity ID', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $sp_entity_id ); ?>" required>
-					<p class="mt-2"><b><?php esc_html_e( 'Note:', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( 'If you have already shared the above URLs or Metadata with your IdP, do', 'miniorange-saml-20-single-sign-on' ); ?> <b><?php esc_html_e( 'NOT', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( 'change SP EntityID. It might break your existing login flow.', 'miniorange-saml-20-single-sign-on' ); ?></p>
-				</div>
-			</div>
+		<div class="mo-saml-bootstrap-row align-items-center mo-saml-bootstrap-mt-4 mo-saml-bootstrap-mb-4">
+		<div class="mo-saml-bootstrap-col-md-3">
+			<h6 class="mo-saml-bootstrap-text-secondary">
+				<?php esc_html_e( 'SP EntityID / Issuer ', 'miniorange-saml-20-single-sign-on' ); ?>
+				<?php mo_saml_display_tooltip( wp_kses( __( 'If you have already shared the above URLs or Metadata with your IdP, do <strong>NOT</strong> change SP EntityID. It might break your existing login flow.', 'miniorange-saml-20-single-sign-on' ), array( 'strong' => array() ) ) ); ?>
+			</h6>
+		</div>
+		<div class="mo-saml-bootstrap-col-md-9 mo-saml-bootstrap-d-flex mo-saml-bootstrap-align-items-center mo-saml-bootstrap-gap-2">
+			<input type="text" name="mo_saml_sp_entity_id" title="Please enter a valid value" pattern="[^\s]+\s*$" placeholder="<?php esc_attr_e( 'Enter Service Provider Entity ID', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $sp_entity_id ); ?>" required>
+		</div>
+		</div>
 			<div class="mo-saml-bootstrap-align-items-center mo-saml-bootstrap-mt-4 mo-saml-bootstrap-rounded prem-info">
-				<div class="prem-icn sso-btn-prem-img"><svg class="crown_img" stroke="#FA8E00" fill="#FA8E00" stroke-width="0" viewBox="0 0 576 512" height="40px" width="40px" xmlns="http://www.w3.org/2000/svg"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6l277.2 0c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"></path></svg>
+				<div class="prem-icn sso-btn-prem-img"><svg class="crown_img" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 520 480" fill="none">
+<path d="M384.994 138.665L392.555 153.785C403.316 175.336 392.945 201.949 365.082 209.696C364.73 209.813 326.138 220.172 314.417 185.066L303.12 151.133L335.267 118.972L255.941 0L176.616 118.972L208.763 151.133L197.466 185.066C184.538 223.8 131.333 214.681 118.786 187.367C113.834 176.612 114.039 164.379 119.328 153.785L126.874 138.679L0 93.3903L60.8969 327.116L90.9038 357.123H255.941H420.979L450.986 327.116L512 93.4053L384.994 138.665Z" fill="#FED843"/>
+<path d="M450.986 327.116L512 93.4053L384.994 138.665L392.555 153.785C403.316 175.336 392.945 201.949 365.082 209.696C364.73 209.813 326.137 220.172 314.417 185.066L303.12 151.133L335.267 118.972L255.941 0V357.123H420.979L450.986 327.116Z" fill="#FABE2C"/>
+<path d="M255.942 327.116H60.897V402.133H255.942H450.986V327.116H255.942Z" fill="#FABE2C"/>
+<path d="M255.941 327.116H450.986V402.133H255.941V327.116Z" fill="#FF9100"/>
+<path d="M180.867 327.103L255.873 252.097L330.879 327.103L255.873 402.108L180.867 327.103Z" fill="#FABE2C"/>
+<path d="M255.941 252.099V402.133L330.959 327.116L255.941 252.099Z" fill="#FF9100"/>
 					<p class="prem-info-text"><?php esc_html_e( 'Configurable ACS URL / SP Base URL available in the', 'miniorange-saml-20-single-sign-on' ); ?> <b><?php esc_html_e( 'Paid', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( 'versions of the plugin.', 'miniorange-saml-20-single-sign-on' ); ?> <a href="<?php echo esc_url( Mo_Saml_External_Links::PRICING_PAGE ); ?>" target="_blank" class="mo-saml-bootstrap-text-warning"><?php esc_html_e( 'Click here to upgrade', 'miniorange-saml-20-single-sign-on' ); ?></a></p>
 				</div>
-				<div class="mo-saml-bootstrap-row mo-saml-bootstrap-align-items-center">
+				<div class="mo-saml-bootstrap-row mo-saml-bootstrap-align-items-center mo-saml-bootstrap-mb-4">
 					<div class="mo-saml-bootstrap-col-md-3">
 						<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'SP Base URL :', 'miniorange-saml-20-single-sign-on' ); ?></h6>
 					</div>
@@ -224,7 +233,13 @@ function mo_saml_display_sp_metadata( $sp_entity_id, $acs_url, $sp_metadata_url 
 							<tbody>
 								<tr>
 									<td><a href="<?php echo esc_url( Mo_Saml_External_Links::PRICING_PAGE ); ?>" target="_blank" class="mo-saml-bs-btn btn-cstm mo-saml-bootstrap-ms-3"><?php esc_html_e( 'Premium', 'miniorange-saml-20-single-sign-on' ); ?></a></td>
-									<td class="mo-saml-bootstrap-text-end"><svg class="crown_img" stroke="#FA8E00" fill="#FA8E00" stroke-width="0" viewBox="0 0 576 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6l277.2 0c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"></path></svg>
+									<td class="mo-saml-bootstrap-text-end"><svg class="crown_img" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 520 480" fill="none">
+<path d="M384.994 138.665L392.555 153.785C403.316 175.336 392.945 201.949 365.082 209.696C364.73 209.813 326.138 220.172 314.417 185.066L303.12 151.133L335.267 118.972L255.941 0L176.616 118.972L208.763 151.133L197.466 185.066C184.538 223.8 131.333 214.681 118.786 187.367C113.834 176.612 114.039 164.379 119.328 153.785L126.874 138.679L0 93.3903L60.8969 327.116L90.9038 357.123H255.941H420.979L450.986 327.116L512 93.4053L384.994 138.665Z" fill="#FED843"/>
+<path d="M450.986 327.116L512 93.4053L384.994 138.665L392.555 153.785C403.316 175.336 392.945 201.949 365.082 209.696C364.73 209.813 326.137 220.172 314.417 185.066L303.12 151.133L335.267 118.972L255.941 0V357.123H420.979L450.986 327.116Z" fill="#FABE2C"/>
+<path d="M255.942 327.116H60.897V402.133H255.942H450.986V327.116H255.942Z" fill="#FABE2C"/>
+<path d="M255.941 327.116H450.986V402.133H255.941V327.116Z" fill="#FF9100"/>
+<path d="M180.867 327.103L255.873 252.097L330.879 327.103L255.873 402.108L180.867 327.103Z" fill="#FABE2C"/>
+<path d="M255.941 252.099V402.133L330.959 327.116L255.941 252.099Z" fill="#FF9100"/>
 								</tr>
 							</tbody>
 						</table>
@@ -237,7 +252,13 @@ function mo_saml_display_sp_metadata( $sp_entity_id, $acs_url, $sp_metadata_url 
 							<tbody>
 								<tr>
 									<td><a href="<?php echo esc_url( Mo_Saml_External_Links::PRICING_PAGE ); ?>" target="_blank" class="mo-saml-bs-btn btn-cstm mo-saml-bootstrap-ms-3"><?php esc_html_e( 'Premium', 'miniorange-saml-20-single-sign-on' ); ?></a></td>
-									<td class="mo-saml-bootstrap-text-end"><svg class="crown_img" stroke="#FA8E00" fill="#FA8E00" stroke-width="0" viewBox="0 0 576 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6l277.2 0c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"></path></svg>
+									<td class="mo-saml-bootstrap-text-end"><svg class="crown_img" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 520 480" fill="none">
+<path d="M384.994 138.665L392.555 153.785C403.316 175.336 392.945 201.949 365.082 209.696C364.73 209.813 326.138 220.172 314.417 185.066L303.12 151.133L335.267 118.972L255.941 0L176.616 118.972L208.763 151.133L197.466 185.066C184.538 223.8 131.333 214.681 118.786 187.367C113.834 176.612 114.039 164.379 119.328 153.785L126.874 138.679L0 93.3903L60.8969 327.116L90.9038 357.123H255.941H420.979L450.986 327.116L512 93.4053L384.994 138.665Z" fill="#FED843"/>
+<path d="M450.986 327.116L512 93.4053L384.994 138.665L392.555 153.785C403.316 175.336 392.945 201.949 365.082 209.696C364.73 209.813 326.137 220.172 314.417 185.066L303.12 151.133L335.267 118.972L255.941 0V357.123H420.979L450.986 327.116Z" fill="#FABE2C"/>
+<path d="M255.942 327.116H60.897V402.133H255.942H450.986V327.116H255.942Z" fill="#FABE2C"/>
+<path d="M255.941 327.116H450.986V402.133H255.941V327.116Z" fill="#FF9100"/>
+<path d="M180.867 327.103L255.873 252.097L330.879 327.103L255.873 402.108L180.867 327.103Z" fill="#FABE2C"/>
+<path d="M255.941 252.099V402.133L330.959 327.116L255.941 252.099Z" fill="#FF9100"/>
 								</tr>
 							</tbody>
 						</table>

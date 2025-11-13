@@ -197,7 +197,6 @@ class Mo_SAML_Customer {
 			'phone'     => $phone,
 			'query'     => $query,
 		);
-
 		$field_string = wp_json_encode( $fields );
 
 		$headers  = array(

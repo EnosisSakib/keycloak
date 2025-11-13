@@ -72,6 +72,9 @@ class Mo_SAML_Base_Handler {
 			case 'mo_saml_contact_us_query_option':
 				Mo_SAML_Contact_Us_Handler::mo_saml_send_contact_us( $post_array );
 				break;
+			case 'mo_saml_callback_request_query_option':
+				Mo_SAML_Contact_Us_Handler::mo_saml_send_contact_us( $post_array );
+				break;
 			case 'clear_attrs_list':
 				Mo_SAML_Attribute_Mapping_Handler::clear_attr_list();
 				break;

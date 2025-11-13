@@ -1,20 +1,20 @@
 ﻿=== SAML Single Sign On – SSO Login ===
 Contributors: miniOrange
 Donate link: https://plugins.miniorange.com
-Tags: SSO, Single Sign On, Azure AD, SAML, SSO login, Office365, Okta
+Tags: SSO, SAML, Single Sign On, Azure AD, Okta Login
 Requires at least: 3.7
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.3.2
+Stable tag: 5.3.5
 License: Expat
 License URI: https://plugins.miniorange.com/mit-license
 
-WordPress SSO (Single Sign On) SAML Login with Okta, Azure AD/B2C, G-Suite, Shibboleth, OneLogin, Keycloak, Salesforce, Auth0 & more with 24/7 Support.
+SAML SSO (Single Sign On) for WordPress Login with Okta, Entra ID, Azure AD/B2C, G-Suite, Shibboleth, OneLogin, Keycloak, Salesforce [24/7 Support]
 
 == Description ==
 **Simplify WordPress Login Experience With Our SAML Single Sign On (SSO) Plugin**
 
-With the <a href="https://plugins.miniorange.com/wordpress-single-sign-on-sso?utm_source=Google&utm_medium=Landing+page&utm_campaign=Wp+Readme+to+Landing+page&utm_id=1" target="_blank">**miniOrange WordPress SAML SSO plugin**</a>, you can enable Single Sign On (SSO) for your WordPress site. This means users can sign in with their existing accounts from Identity Providers (IDPs) like <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-azure-ad?utm_source=Readme&utm_medium=SAML+SSO+Azure+AD+Guide&utm_id=2%22" target="_blank">**Microsoft Azure AD/ Entra ID**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-google-apps?utm_source=Readme&utm_medium=SAML+SSO+Google+Apps+Guide&utm_id=5" target="_blank">**Google Workspace**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-okta?utm_source=Readme&utm_medium=SAML+SSO+Okta+Guide&utm_id=4" target="_blank">**Okta**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-salesforce?utm_source=Readme&utm_medium=SAML+SSO+Salesforce+Guide&utm_id=6" target="_blank">**Salesforce**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-jboss-keycloak?utm_source=Readme&utm_medium=SAML+SSO+Keycloak+Guide&utm_id=7" target="_blank">**Keycloak**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-shibboleth-2?utm_source=Readme&utm_medium=SAML+SSO+Shibboleth+Guide&utm_campaign=WordPress.org&utm_id=17" target="_blank">**Shibboleth**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-onelogin?utm_source=Readme&utm_medium=SAML+SSO+OneLogin+Guide&utm_campaign=WordPress.org&utm_id=18" target="_blank">**OneLogin**</a> and others without creating separate WordPress usernames and passwords.
+With the <a href="https://plugins.miniorange.com/wordpress-single-sign-on-sso?utm_source=Google&utm_medium=Landing+page&utm_campaign=Wp+Readme+to+Landing+page&utm_id=1" target="_blank">**miniOrange WordPress SAML SSO plugin**</a>, you can enable Single Sign On (SSO) for your WordPress site. This means users can sign in with their existing accounts from Identity Providers (IDPs) like <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-azure-ad?utm_source=Readme&utm_medium=SAML+SSO+Azure+AD+Guide&utm_id=2%22" target="_blank">**Microsoft Azure AD/ Entra ID**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-google-apps?utm_source=Readme&utm_medium=SAML+SSO+Google+Apps+Guide&utm_id=5" target="_blank">**Google Workspace**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-okta?utm_source=Readme&utm_medium=SAML+SSO+Okta+Guide&utm_id=4" target="_blank">**Okta**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-salesforce?utm_source=Readme&utm_medium=SAML+SSO+Salesforce+Guide&utm_id=6" target="_blank">**Salesforce**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-jboss-keycloak?utm_source=Readme&utm_medium=SAML+SSO+Keycloak+Guide&utm_id=7" target="_blank">**Keycloak**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-shibboleth-2?utm_source=Readme&utm_medium=SAML+SSO+Shibboleth+Guide&utm_campaign=WordPress.org&utm_id=17" target="_blank">**Shibboleth**</a>, <a href="https://plugins.miniorange.com/saml-single-sign-on-sso-wordpress-using-onelogin?utm_source=Readme&utm_medium=SAML+SSO+OneLogin+Guide&utm_campaign=WordPress.org&utm_id=18" target="_blank">**OneLogin**</a>, ADFS, and others without creating separate WordPress usernames and passwords.
 
 The plugin makes your WordPress site function as a SAML-compliant Service Provider (SP) by using the SAML 2.0 protocol to securely exchange authentication data with your chosen Identity Provider (IDP). Once users are authenticated by the IDP, they automatically gain access to your WordPress site and its resources. 
 
@@ -251,6 +251,17 @@ Visit Help & FAQ section in the plugin OR email us at <a href="mailto:info@xecur
 
 == Changelog ==
 
+= 5.3.5 =
+* Fix: Fixed the documentation links that are not accessible
+
+= 5.3.4 =
+* Feature: Added SSO Links with redirect option to use on your pages.
+* Improvement: Renamed Service Provider Setup tab to IDP Configuration.
+* Improvement: Updated Support form for call requests and improved overall UI.
+
+= 5.3.3 =
+* Improvement: Handling SAML Destination with null safety and sanitization
+
 = 5.3.2 =
 * Fix: Added check for handling invalid SAML Response XML and Empty DOMDocument
 
@@ -341,6 +352,17 @@ Visit Help & FAQ section in the plugin OR email us at <a href="mailto:info@xecur
 For older changelog entries, please see the [additional changelog.txt file](https://plugins.svn.wordpress.org/miniorange-saml-20-single-sign-on/trunk/changelog.txt) provided with the plugin.
 
 == Upgrade Notice ==
+
+= 5.3.5 =
+* Fix: Fixed the documentation links that are not accessible
+
+= 5.3.4 =
+* Feature: Added SSO Links with redirect option to use on your pages.
+* Improvement: Renamed Service Provider Setup tab to IDP Configuration.
+* Improvement: Updated Support form for call requests and improved overall UI.
+
+= 5.3.3 =
+* Improvement: Handling SAML Destination with null safety and sanitization
 
 = 5.3.2 =
 * Fix: Added check for handling invalid SAML Response XML and Empty DOMDocument

@@ -127,10 +127,10 @@ function mo_saml_display_test_config_error_page( $error_code, $status_message = 
 	}
 
 	echo '<div style="font-family:Calibri;padding:0 3%;">
-			<div style="color: #a94442;background-color: #f2dede;padding: 15px;margin-bottom: 20px;text-align:center;border:1px solid #E6B3B2;font-size:18pt;"> Error Code: ' . esc_html( $error_code['code'] ) . '</div>
-	<div style="color: #a94442;font-size:14pt; margin-bottom:20px;"><p><strong>Error: </strong>' . esc_html( $error_message ) . '</p>';
+			<div style="color: #a94442;background-color: #f2dede;padding: 15px;margin-bottom: 20px;text-align:center;border:1px solid #E6B3B2;font-size:18pt;"> ' . esc_html__( 'Error Code:', 'miniorange-saml-20-single-sign-on' ) . ' ' . esc_html( $error_code['code'] ) . '</div>
+	<div style="color: #a94442;font-size:14pt; margin-bottom:20px;"><p><strong>' . esc_html__( 'Error:', 'miniorange-saml-20-single-sign-on' ) . ' </strong>' . esc_html( $error_message ) . '</p>';
 	if ( ! empty( $status_message ) ) {
-		echo '<p><strong>Status Message in the SAML Response:</strong> <br/>' . esc_html( $status_message ) . '</p><br>';
+		echo '<p><strong>' . esc_html__( 'Status Message in the SAML Response:', 'miniorange-saml-20-single-sign-on' ) . '</strong> <br/>' . esc_html( $status_message ) . '</p><br>';
 	}
 	if ( 'WPSAMLERR010' === $error_code['code'] || 'WPSAMLERR004' === $error_code['code'] || 'WPSAMLERR012' === $error_code['code'] ) {
 		$option_id = '';
@@ -150,18 +150,18 @@ function mo_saml_display_test_config_error_page( $error_code, $status_message = 
                     <form method="post" action="">';
 		wp_nonce_field( $option_id );
 		echo '<input type="hidden" name="option" value="' . esc_attr( $option_id ) . '" />
-                <input type="submit" class="miniorange-button" style="width: 25%" value="' . esc_attr( 'Click here to Fix Issue' ) . '">
+                <input type="submit" class="miniorange-button" style="width: 25%" value="' . esc_attr__( 'Click here to Fix Issue', 'miniorange-saml-20-single-sign-on' ) . '">
                 <br>
                 </p>      
             </form>    
-			<p><strong>To know more about the issue, please go through the <a href="' . esc_url( $error_faq ) . '">FAQ</a>  
+			<p><strong>' . esc_html__( 'To know more about the issue, please go through the', 'miniorange-saml-20-single-sign-on' ) . ' <a href="' . esc_url( $error_faq ) . '">' . esc_html__( 'FAQ', 'miniorange-saml-20-single-sign-on' ) . '</a>  
           </div>';
 	} else {
-		echo '<p><strong>Solution:</strong></p>
+		echo '<p><strong>' . esc_html__( 'Solution:', 'miniorange-saml-20-single-sign-on' ) . '</strong></p>
 		' . wp_kses_post( $error_fix ) . '';
 		echo '<div style="margin:3%;display:block;text-align:center;">
-				<input style="padding:1%;width:100px;background: #0091CD none repeat scroll 0% 0%;cursor: pointer;font-size:15px;border-width: 1px;border-style: solid;border-radius: 3px;white-space: nowrap;box-sizing: border-box;border-color: #0073AA;box-shadow: 0px 1px 0px rgba(120, 200, 230, 0.6) inset;color: #FFF;"type="button" value="Done" onClick="self.close();">
-			<p><strong>To fix the issue you are facing, Please go through this <a href="' . esc_url( $error_faq ) . '">FAQ</a>
+				<input style="padding:1%;width:100px;background: #0091CD none repeat scroll 0% 0%;cursor: pointer;font-size:15px;border-width: 1px;border-style: solid;border-radius: 3px;white-space: nowrap;box-sizing: border-box;border-color: #0073AA;box-shadow: 0px 1px 0px rgba(120, 200, 230, 0.6) inset;color: #FFF;"type="button" value="' . esc_attr__( 'Done', 'miniorange-saml-20-single-sign-on' ) . '" onClick="self.close();">
+			<p><strong>' . esc_html__( 'To fix the issue you are facing, Please go through this', 'miniorange-saml-20-single-sign-on' ) . ' <a href="' . esc_url( $error_faq ) . '">' . esc_html__( 'FAQ', 'miniorange-saml-20-single-sign-on' ) . '</a>
 	</div></div>';
 	}
 	mo_saml_download_logs( $error_message, $error_cause );

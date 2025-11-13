@@ -1630,3 +1630,163 @@ msgstr ""
 #: pointers.php:252
 msgid "Add a shortcode to any page and SSO into your website"
 msgstr ""
+
+#: login.php:135
+msgid "Warning:"
+msgstr ""
+
+#: login.php:135
+msgid "Following PHP extensions (%s) are disabled which are important for SSO configuration. Please enable these extensions to continue using SSO on your site."
+msgstr ""
+
+#: views/mo-saml-plugin-core.php:19 views/mo-saml-plugin-core.php:26 views/mo-saml-plugin-core.php:33
+msgid "Warning:"
+msgstr ""
+
+#: views/mo-saml-plugin-core.php:20 views/mo-saml-plugin-core.php:27 views/mo-saml-plugin-core.php:34
+msgid "is not installed or disabled"
+msgstr ""
+
+#: views/mo-saml-plugin-core.php:164
+msgid "IDP Configuration"
+msgstr ""
+
+#: class-mo-saml-utilities.php:250
+msgid "Warning: Plugin disabled because required PHP extensions are missing."
+msgstr ""
+
+#: class-mo-saml-utilities.php:250
+msgid "Please enable the following PHP extensions:"
+msgstr ""
+
+#: class-mo-saml-utilities.php:256
+msgid "Please refresh the page after enabling the above extensions."
+msgstr ""
+
+#: class-mo-saml-utilities.php:258
+msgid "For any further issues, please send an email to"
+msgstr ""
+
+#: mo-saml-settings-page.php:130
+msgid "Error Code:"
+msgstr ""
+
+#: mo-saml-settings-page.php:131
+msgid "Error:"
+msgstr ""
+
+#: mo-saml-settings-page.php:133
+msgid "Status Message in the SAML Response:"
+msgstr ""
+
+#: mo-saml-settings-page.php:153
+msgid "Click here to Fix Issue"
+msgstr ""
+
+#: mo-saml-settings-page.php:157
+msgid "To know more about the issue, please go through the"
+msgstr ""
+
+#: mo-saml-settings-page.php:157
+msgid "FAQ"
+msgstr ""
+
+#: mo-saml-settings-page.php:160
+msgid "Solution:"
+msgstr ""
+
+#: mo-saml-settings-page.php:163
+msgid "Done"
+msgstr ""
+
+#: mo-saml-settings-page.php:164
+msgid "To fix the issue you are facing, Please go through this"
+msgstr ""
+
+#: views/mo-saml-support-form.php:43
+msgid "Send us your query via Email"
+msgstr ""
+
+#: views/mo-saml-support-form.php:54
+msgid "Request Callback"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:297
+msgid "Replace the %s with the url of the Page."
+msgstr ""
+
+#: views/mo-saml-service-provider-setup.php:241 views/mo-saml-service-provider-setup.php:367
+msgid "Only alphabets, numbers and underscores are allowed as the Identity Provider name."
+msgstr ""
+
+#: views/mo-saml-service-provider-setup.php:254
+msgid "You can find the <strong>EntityID</strong> in Your IdP-Metadata XML file enclosed in <code>EntityDescriptor</code> tag having attribute as <code>entityID</code>"
+msgstr ""
+
+#: views/mo-saml-service-provider-setup.php:267
+msgid "You can find the <strong>SAML Login URL</strong> in Your IdP-Metadata XML file enclosed in <code>SingleSignOnService</code> tag (Binding type: HTTP-Redirect)"
+msgstr ""
+
+#: views/mo-saml-service-provider-setup.php:289
+msgid "Format of the certificate -<br><strong>-----BEGIN CERTIFICATE-----<br>XXXXXXXXXXXXXXXXXXXXXXXXXXX<br>-----END CERTIFICATE-----</strong>"
+msgstr ""
+
+#: views/mo-saml-service-provider-setup.php:305
+msgid "Uses iconv encoding to convert X509 certificate into correct encoding."
+msgstr ""
+
+#: views/mo-saml-service-provider-setup.php:318
+msgid "Disable this toggle to disable the check of time validity for SAML assertion."
+msgstr ""
+
+#: views/mo-saml-plugin-core.php:138
+msgid "Try Live Demo"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:53
+msgid "Option 1: Use a Single Sign-On button"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:272
+msgid "Option 2: SSO Links"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:310
+msgid "Option 3: Use a ShortCode"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:233
+msgid "Option 4: Use a Widget"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:350
+msgid "Option 5: Auto-Redirection from site"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:403
+msgid "Option 6: Auto-Redirection from WordPress Login"
+msgstr ""
+
+#: views/mo-saml-support-form.php:34
+msgid "We're Here to Help 24x7"
+msgstr ""
+
+#: views/mo-saml-support-form.php:36
+msgid "(Send your queries or custom requirements)"
+msgstr ""
+
+#: views/mo-saml-support-form.php:46
+msgid "Send Email"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:284
+msgid "Use the following link to add on your HTML Pages for users to initiate SSO from the site:"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:292
+msgid "Note:"
+msgstr ""
+
+#: views/mo-saml-redirection-sso-links.php:292
+msgid "If you want to redirect the user to a Page after the authentication, then use the SSO Link as given below:"
+msgstr ""

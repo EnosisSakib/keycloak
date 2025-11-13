@@ -7,6 +7,27 @@
  */
 
 /**
+ * Display tooltip with message
+ *
+ * @param string $message Tooltip message to display.
+ * @return void
+ */
+function mo_saml_display_tooltip( $message ) {
+	?>
+	<span class="mo-saml-tooltip">
+		<svg width="13" height="13" viewBox="0 0 16 16">
+			<circle cx="8" cy="8" r="7" fill="white" stroke="#6c757d" stroke-width="1.5"/>
+			<text x="8" y="12" font-size="12" fill="#6c757d" text-anchor="middle" font-weight="bold">i</text>
+		</svg>
+		<span class="mo-saml-tooltiptext">
+			<?php echo wp_kses_post( $message ); ?>
+			<span class="mo-saml-tooltiptext-arrow"></span>
+		</span>
+	</span>
+	<?php
+}
+
+/**
  * Service Provider Setup Tab
  *
  * @return void
@@ -176,73 +197,83 @@ function mo_saml_display_sp_configuration( $saml_identity_name, $saml_login_url,
 						<input type="hidden" name="mo_saml_identity_provider_identifier_details" id="mo_saml_identity_provider_identifier_details" value='<?php echo ( isset( $idp_data ) ) ? wp_json_encode( $idp_data ) : ''; ?>' />
 						<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-4">
 							<div class="mo-saml-bootstrap-col-md-3 mo-saml-bootstrap-pe-0">
-								<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'Identity Provider Name', 'miniorange-saml-20-single-sign-on' ); ?><span style="color: red;">*</span> :</h6>
+								<h6 class="mo-saml-bootstrap-text-secondary" style="word-wrap: break-word; overflow-wrap: break-word;">
+								<?php esc_html_e( 'Identity Provider Name', 'miniorange-saml-20-single-sign-on' ); ?><span class="mo-saml-required-asterisk">*</span>
+								</h6>
 							</div>
 							<div class="mo-saml-bootstrap-col-md-7">
-								<input type="text" name="saml_identity_name" placeholder="<?php esc_html_e( 'Identity Provider name like ADFS, SimpleSAML, Salesforce', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $saml_identity_name ); ?>" required pattern="\w+" title="Only alphabets, numbers and underscore is allowed">
-								<p class="mt-2"><b><?php esc_html_e( 'Note', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( ': Only alphabets, numbers and underscores are allowed as the Identity Provider name.', 'miniorange-saml-20-single-sign-on' ); ?></p>
+								<div class="mo-saml-input-with-tooltip">
+									<input type="text" name="saml_identity_name" placeholder="<?php esc_html_e( 'Enter Identity Provider Name (e.g. ADFS, SimpleSAML)', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $saml_identity_name ); ?>" required pattern="\w+" title="Only alphabets, numbers and underscore is allowed">
+								</div>
 							</div>
 						</div>
 						<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-3">
 							<div class="mo-saml-bootstrap-col-md-3">
-								<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'IdP Entity ID or Issuer', 'miniorange-saml-20-single-sign-on' ); ?><span style="color: red;">*</span> :</h6>
+								<h6 class="mo-saml-bootstrap-text-secondary" style="word-wrap: break-word; overflow-wrap: break-word;">
+									<?php esc_html_e( 'IdP Entity ID or Issuer', 'miniorange-saml-20-single-sign-on' ); ?><span class="mo-saml-required-asterisk">*</span>
+								</h6>
 							</div>
 							<div class="mo-saml-bootstrap-col-md-7">
-								<input type="text" title="Please enter a valid value" name="saml_issuer" id="saml_issuer" pattern="[^\s]+\s*$" placeholder="<?php esc_attr_e( 'Identity Provider Entity ID or Issuer', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $saml_issuer ); ?>" required="">
-								<p class="mt-2"><b><?php esc_html_e( 'Note', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( ': You can find the', 'miniorange-saml-20-single-sign-on' ); ?> <b><?php esc_html_e( 'EntityID', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( 'in Your IdP-Metadata XML file enclosed in', 'miniorange-saml-20-single-sign-on' ); ?><code>EntityDescriptor</code> <?php esc_html_e( 'tag having attribute as', 'miniorange-saml-20-single-sign-on' ); ?> <code><?php esc_html_e( 'entityID', 'miniorange-saml-20-single-sign-on' ); ?></code></p>
+								<div class="mo-saml-input-with-tooltip">
+									<input type="text" title="Please enter a valid value" name="saml_issuer" id="saml_issuer" pattern="[^\s]+\s*$" placeholder="<?php esc_attr_e( 'Get entityID attribute in EntityDescriptor tag', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $saml_issuer ); ?>" required="">
+								</div>
 							</div>
 						</div>
 						<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-3">
 							<div class="mo-saml-bootstrap-col-md-3">
-								<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'SAML Login URL', 'miniorange-saml-20-single-sign-on' ); ?><span style="color: red;">*</span> :</h6>
+								<h6 class="mo-saml-bootstrap-text-secondary" style="word-wrap: break-word; overflow-wrap: break-word;">
+									<?php esc_html_e( 'SAML Login URL', 'miniorange-saml-20-single-sign-on' ); ?><span class="mo-saml-required-asterisk">*</span><?php /* tooltip moved inside input */ ?>
+							</h6>
 							</div>
 							<div class="mo-saml-bootstrap-col-md-7">
-								<input type="text" title="Please enter a valid value" name="saml_login_url" id="saml_login_url" pattern="[^\s]+\s*$" placeholder="<?php esc_attr_e( 'Single Sign On Service URL (HTTP-Redirect binding) of your IdP', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $saml_login_url ); ?>" required="">
-								<p class="mt-2"><b><?php esc_html_e( 'Note', 'miniorange-saml-20-single-sign-on' ); ?></b> : <?php esc_html_e( 'You can find the', 'miniorange-saml-20-single-sign-on' ); ?> <b><?php esc_html_e( 'SAML Login URL', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( 'in Your IdP-Metadata XML file enclosed in', 'miniorange-saml-20-single-sign-on' ); ?> <code>SingleSignOnService</code> <?php esc_html_e( 'tag (Binding type: HTTP-Redirect)', 'miniorange-saml-20-single-sign-on' ); ?></p>
+								<div class="mo-saml-input-with-tooltip">
+									<input type="text" title="Please enter a valid value" name="saml_login_url" id="saml_login_url" pattern="[^\s]+\s*$" placeholder="<?php esc_attr_e( 'Get Location value in SingleSignOnService (HTTP-Redirect) tag ', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="<?php echo esc_attr( $saml_login_url ); ?>" required="">
+								</div>
 							</div>
 						</div>
 						<?php
 						foreach ( $saml_x509_certificate as $key => $value ) {
 							?>
-							<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-3">
+								<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-3">
 								<div class="mo-saml-bootstrap-col-md-3">
-									<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'X.509 Certificate', 'miniorange-saml-20-single-sign-on' ); ?><span style="color: red;">*</span> :</h6>
+								<h6 class="mo-saml-bootstrap-text-secondary" style="word-wrap: break-word; overflow-wrap: break-word;"><?php esc_html_e( 'X.509 Certificate', 'miniorange-saml-20-single-sign-on' ); ?><span class="mo-saml-required-asterisk">*</span><span id="mo-saml-cert-tooltip"></span>
 								</div>
 								<div class="mo-saml-bootstrap-col-md-7">
-									<textarea rows="4" cols="5" name="saml_x509_certificate[<?php esc_attr( $key ); ?>]" id="saml_x509_certificate" onkeyup="removeCertificateErrorClass();" placeholder="<?php esc_attr_e( 'Copy and Paste the content from the downloaded certificate or copy the content enclosed in X509Certificate tag (has parent tag KeyDescriptor use=signing) in IdP-Metadata XML file', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" required=""><?php echo esc_html( $value ); ?></textarea>
+									<textarea rows="4" cols="5" name="saml_x509_certificate[<?php esc_attr( $key ); ?>]" id="saml_x509_certificate" onkeyup="removeCertificateErrorClass();" placeholder="<?php esc_attr_e( "Format of the certificate:\n-----BEGIN CERTIFICATE-----\nXXXXXXXXXXXXXXXXXXXXXX\n-----END CERTIFICATE-----\n", 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" required=""><?php echo esc_html( $value ); ?></textarea>
 
 
-									<span class="mo-saml-error-tip">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffa300" class="bi bi-exclamation-square-fill" viewBox="0 0 16 16">
-											<path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-										</svg>&nbsp; <?php esc_html_e( 'Invalid Certificate', 'miniorange-saml-20-single-sign-on' ); ?>
-									</span>
-
-									<p class="mt-2"><b><?php esc_html_e( 'Note', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( ': Format of the certificate -', 'miniorange-saml-20-single-sign-on' ); ?> <br><b class="mo-saml-bootstrap-text-secondary">-----BEGIN CERTIFICATE-----<br>XXXXXXXXXXXXXXXXXXXXXXXXXXX<br>-----END
-											CERTIFICATE-----</b></p>
-								</div>
-							</div>
+							<span class="mo-saml-error-tip">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffa300" class="bi bi-exclamation-square-fill" viewBox="0 0 16 16">
+									<path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+								</svg>&nbsp; <?php esc_html_e( 'Invalid Certificate', 'miniorange-saml-20-single-sign-on' ); ?>
+							</span>
+						</div>
+					</div>
 							<?php
 						}
 						?>
 						<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-3">
 							<div class="mo-saml-bootstrap-col-md-3">
-								<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'Character encoding :', 'miniorange-saml-20-single-sign-on' ); ?></h6>
+							<h6 class="mo-saml-bootstrap-text-secondary" style="display: flex; align-items: center; word-wrap: break-word; overflow-wrap: break-word;">
+									<?php esc_html_e( 'Character Encoding ', 'miniorange-saml-20-single-sign-on' ); ?>
+							</h6>
+								
 							</div>
+							
 							<div class="mo-saml-bootstrap-col-md-8">
 
 								<input type="checkbox" id="switch" name="mo_saml_encoding_enabled" class="mo-saml-switch" <?php echo esc_attr( $saml_is_encoding_enabled ); ?> /><label class="mo-saml-switch-label" for="switch">Toggle</label>
 
-								<p class="mo-saml-bootstrap-mt-2"><b><?php esc_html_e( 'Note', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( ': Uses iconv encoding to convert X509 certificate into correct encoding.', 'miniorange-saml-20-single-sign-on' ); ?></p>
 							</div>
 						</div>
-						<div class="mo-saml-bootstrap-row mo-saml-bootstrap-align-items-top mo-saml-bootstrap-mt-3">
+						<div class="mo-saml-bootstrap-row mo-saml-bootstrap-align-items-top mo-saml-bootstrap-mt-3 mo-saml-bootstrap-mb-4" style="align-items:center;">
 							<div class="mo-saml-bootstrap-col-md-3">
-								<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'Assertion Time Validity:', 'miniorange-saml-20-single-sign-on' ); ?></h6>
+							<h6 class="mo-saml-bootstrap-text-secondary" style="display: flex; align-items: center; word-wrap: break-word; overflow-wrap: break-word;">
+									<?php esc_html_e( 'Assertion Time Validity', 'miniorange-saml-20-single-sign-on' ); ?><?php mo_saml_display_tooltip( esc_html__( 'Disable this toggle to disable the check of time validity for SAML assertion.', 'miniorange-saml-20-single-sign-on' ) ); ?>
+								</h6>
 							</div>
 							<div class="mo-saml-bootstrap-col-md-8">
-								<input type="checkbox" id="switch_sync" name="mo_saml_assertion_time_validity" class="mo-saml-switch" <?php echo esc_attr( $saml_assertion_time_validity ); ?> /><label class="mo-saml-switch-label" for="switch_sync">Toggle</label>
-								<p class="mo-saml-bootstrap-mt-2"><b><?php esc_html_e( 'Note', 'miniorange-saml-20-single-sign-on' ); ?></b><?php esc_html_e( ': Disable this toggle to disable the check of time validity for SAML assertion.', 'miniorange-saml-20-single-sign-on' ); ?></p>
+								<input  type="checkbox" id="switch_sync" name="mo_saml_assertion_time_validity" class="mo-saml-switch" <?php echo esc_attr( $saml_assertion_time_validity ); ?> /><label class="mo-saml-switch-label" for="switch_sync">Toggle</label>
 							</div>
 						</div>
 						<div class="mo-saml-bootstrap-row align-items-top mt-2 mo-saml-btns-cont">
@@ -282,11 +313,15 @@ function mo_saml_display_sp_configuration( $saml_identity_name, $saml_login_url,
 						<?php wp_nonce_field( 'saml_upload_metadata' ); ?>
 						<div class="mo-saml-bootstrap-row align-items-top mo-saml-bootstrap-mt-4">
 							<div class="mo-saml-bootstrap-col-md-3 mo-saml-bootstrap-pe-0">
-								<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'Identity Provider Name :', 'miniorange-saml-20-single-sign-on' ); ?></h6>
+								<h6 class="mo-saml-bootstrap-text-secondary" style="word-wrap: break-word; overflow-wrap: break-word;"><?php esc_html_e( 'Identity Provider Name', 'miniorange-saml-20-single-sign-on' ); ?><span class="mo-saml-required-asterisk">*</span>
+								<?php /* tooltip moved inside input */ ?>
+							</h6>
 							</div>
 							<div class="mo-saml-bootstrap-col-md-7">
-								<input type="text" name="saml_identity_metadata_provider" placeholder="Identity Provider name like ADFS, SimpleSAML, Salesforce" class="mo-saml-bootstrap-w-100" value="" required pattern="\w+" title="Only alphabets, numbers and underscore is allowed">
-								<p class="mt-2"><b><?php esc_html_e( 'Note', 'miniorange-saml-20-single-sign-on' ); ?></b> <?php esc_html_e( ': Only alphabets, numbers and underscores are allowed as the Identity Provider name.', 'miniorange-saml-20-single-sign-on' ); ?></p>
+								<div class="mo-saml-input-with-tooltip">
+									<input type="text" name="saml_identity_metadata_provider" placeholder="<?php esc_attr_e( 'Enter Identity Provider Name (e.g. ADFS, SimpleSAML)', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="" required pattern="\w+" title="Only alphabets, numbers and underscore is allowed">
+									<?php mo_saml_display_tooltip( wp_kses( __( '<strong>Required.</strong> Allowed: letters, numbers, and underscore (<code>_</code>). No spaces.<br>Example: <code>ADFS</code> or <code>SimpleSAML</code>.', 'miniorange-saml-20-single-sign-on' ), array( 'strong' => array(), 'code' => array(), 'br' => array() ) ) ); ?>
+								</div>
 							</div>
 						</div>
 						<div class="mo-saml-bootstrap-row mo-saml-bootstrap-align-items-center mo-saml-bootstrap-mt-3">
@@ -306,12 +341,15 @@ function mo_saml_display_sp_configuration( $saml_identity_name, $saml_login_url,
 						<div class="mo-saml-bootstrap-text-center">
 							<div class="mo-saml-bootstrap-mt-3 form-head form-head-bar form-sep"><span class="mo-saml-bootstrap-bg-secondary mo-saml-bootstrap-rounded-circle mo-saml-bootstrap-p-2 mo-saml-bootstrap-text-white"><?php esc_html_e( 'OR', 'miniorange-saml-20-single-sign-on' ); ?></span></div>
 						</div>
-						<div class="mo-saml-bootstrap-row mo-saml-bootstrap-align-items-center mo-saml-bootstrap-mt-5">
-							<div class="mo-saml-bootstrap-col-md-3">
-								<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'Enter metadata URL :', 'miniorange-saml-20-single-sign-on' ); ?></h6>
+							<div class="mo-saml-bootstrap-row mo-saml-bootstrap-align-items-center mo-saml-bootstrap-mt-5">
+								<div class="mo-saml-bootstrap-col-md-3">
+									<h6 class="mo-saml-bootstrap-text-secondary"><?php esc_html_e( 'Enter metadata URL :', 'miniorange-saml-20-single-sign-on' ); ?><span class="mo-saml-required-asterisk">*</span></h6>
 							</div>
 							<div class="mo-saml-bootstrap-col-md-4">
-								<input type="url" name="metadata_url" onkeypress="checkUploadMetadataFields();" id="metadata_url" placeholder="<?php esc_html_e( 'Enter metadata URL of your IdP', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="" required>
+								<div class="mo-saml-input-with-tooltip">
+									<input type="url" name="metadata_url" onkeypress="checkUploadMetadataFields();" id="metadata_url" placeholder="<?php esc_html_e( 'Enter metadata URL of your IdP', 'miniorange-saml-20-single-sign-on' ); ?>" class="mo-saml-bootstrap-w-100" value="" required>
+									<?php mo_saml_display_tooltip( wp_kses( __( 'Public URL to your IdP metadata XML. The plugin will fetch and parse it.<br>Ensure this URL is reachable from your site and returns valid SAML metadata.', 'miniorange-saml-20-single-sign-on' ), array( 'br' => array() ) ) ); ?>
+								</div>
 							</div>
 							<div class="mo-saml-bootstrap-col-md-4">
 								<button type="button" value="Fetch" onclick="checkMetadataUrl();" class="mo-saml-bs-bs-btn btn-cstm mo-saml-bootstrap-rounded mo-saml-bootstrap-d-flex mo-saml-bootstrap-align-items-center"><svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

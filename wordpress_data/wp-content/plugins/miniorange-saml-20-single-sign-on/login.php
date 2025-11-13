@@ -3,7 +3,7 @@
  * Plugin Name: SAML Single Sign On – SSO Login
  * Plugin URI: https://miniorange.com/
  * Description: miniOrange SAML plugin allows sso/login using Azure, Azure B2C, Okta, ADFS, Keycloak, Onelogin, Salesforce, Google Apps (Gsuite), Salesforce, Shibboleth, Centrify, Ping, Auth0 and other Identity Providers. It acts as a SAML Service Provider which can be configured to establish a trust between the plugin and IDP to securely authenticate and login the user to WordPress site.
- * Version: 5.3.2
+ * Version: 5.3.5
  * Author: miniOrange
  * Author URI: https://miniorange.com/
  * License: Expat
@@ -132,7 +132,11 @@ class Saml_Mo_Login {
                 <div class="mo-saml-notice-content">
                     <img src="' . esc_attr( plugin_dir_url( __FILE__ ) ) . 'images/miniorange_logo.webp" class="mo-saml-logo">
                     <span class="mo-saml-warning-text">
-                        <span class="mo-saml-warning-title">Warning:</span> Following PHP extensions (<i class="mo-saml-extension-list">' . esc_attr( $extension_display_line ) . '</i>) are disabled which are important for SSO configuration. Please enable these extensions to continue using SSO on your site.
+                        <span class="mo-saml-warning-title">' . esc_html__( 'Warning:', 'miniorange-saml-20-single-sign-on' ) . '</span> ' . sprintf(
+							/* translators: %s: List of PHP extension names */
+							esc_html__( 'Following PHP extensions (%s) are disabled which are important for SSO configuration. Please enable these extensions to continue using SSO on your site.', 'miniorange-saml-20-single-sign-on' ),
+							'<i class="mo-saml-extension-list">' . esc_html( $extension_display_line ) . '</i>'
+						) . '
                     </span>
                 </div>
 				</div>

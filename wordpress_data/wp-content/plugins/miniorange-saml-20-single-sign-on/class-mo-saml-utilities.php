@@ -247,15 +247,15 @@ class Mo_SAML_Utilities {
                                 <img src="' . esc_attr( plugin_dir_url( __FILE__ ) ) . 'images/miniorange_logo.webp" width="57px" height="56px">
                                 <span class="mo_saml_modal_content_header-title">miniOrange SSO using SAML 2.0</span></br>
                             </div>
-                            <div class="mo_saml_modal_content_extenstions"></br><span class="mo_saml_modal_content_extenstions-warning"><span class="mo_saml_modal_content_extenstions-warning2">Warning: Plugin disabled because required PHP extensions are missing.<br><br></span><span> Please enable the following PHP extensions:</span><br>';
+                            <div class="mo_saml_modal_content_extenstions"></br><span class="mo_saml_modal_content_extenstions-warning"><span class="mo_saml_modal_content_extenstions-warning2">' . esc_html__( 'Warning: Plugin disabled because required PHP extensions are missing.', 'miniorange-saml-20-single-sign-on' ) . '<br><br></span><span> ' . esc_html__( 'Please enable the following PHP extensions:', 'miniorange-saml-20-single-sign-on' ) . '</span><br>';
 									echo '<ol>';
 				foreach ( $disable_extensions as $item ) {
 					echo '<li>' . esc_attr( $item ) . '</li>';
 				}
 									echo '</ol></span><br>
-                                    <span>Please refresh the page after enabling the above extensions.</span>
+                                    <span>' . esc_html__( 'Please refresh the page after enabling the above extensions.', 'miniorange-saml-20-single-sign-on' ) . '</span>
                             </div>';
-							echo '<hr><p class="mo_saml_support_info">For any further issues, please send an email to <a href="mailto: samlsupport@xecurify.com"><i>samlsupport@xecurify.com</i></a></p>
+							echo '<hr><p class="mo_saml_support_info">' . esc_html__( 'For any further issues, please send an email to', 'miniorange-saml-20-single-sign-on' ) . ' <a href="mailto: samlsupport@xecurify.com"><i>samlsupport@xecurify.com</i></a></p>
                         </div>
                     </div>
                 </div>';
@@ -508,11 +508,13 @@ class Mo_SAML_Utilities {
 
 		/* Validate Response-element destination. */
 		$msg_destination = $response->mo_saml_get_destination();
-		if ( strpos( $msg_destination, '?' ) ) {
-			$msg_destination = substr( $msg_destination, 0, strpos( $msg_destination, '?' ) );
-		}
-		if ( substr( $msg_destination, -1 ) === '/' ) {
-			$msg_destination = substr( $msg_destination, 0, -1 );
+		if( null !== $msg_destination ) {
+			if ( strpos( $msg_destination, '?' ) ) {
+				$msg_destination = substr( $msg_destination, 0, strpos( $msg_destination, '?' ) );
+			}
+			if ( substr( $msg_destination, -1 ) === '/' ) {
+				$msg_destination = substr( $msg_destination, 0, -1 );
+			}
 		}
 		if ( substr( $current_url, -1 ) === '/' ) {
 			$current_url = substr( $current_url, 0, -1 );
