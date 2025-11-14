@@ -13,17 +13,17 @@ function keycloak_online_authenticate_user() {
     $token = $_COOKIE['token'] ?? '';
 
     $api_url = 'http://node-server:3000/currentuser';
+    $introspect_url = 'http://192.168.1.40:8080/realms/myrealm/protocol/openid-connect/userinfo';
 
     $args = [
         'headers' => [
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $token,
         ],
-        'body' => json_encode(['token' => $token]),
         'timeout' => 10,
     ];
 
-    $response = wp_remote_post($api_url, $args);
+    $response = wp_remote_post($introspect_url, $args);
 
     if (is_wp_error($response)) {
         wp_logout();
@@ -37,21 +37,20 @@ function keycloak_online_authenticate_user() {
         return;
     }
    
-    if (is_user_logged_in()) {
-        return;
-    }
-
     $body = wp_remote_retrieve_body($response);
     $data = json_decode($body, true);
 
-     if (!$data || empty($data['decodeToken'])) {
+     if (!$data || empty($data['email'])) {
+        echo 'not a valid user token';
         return;
     }
-    $tokenData = $data['decodeToken'];
+
     
-    $email = $tokenData['email'] ?? '';
-    $username = $tokenData['preferred_username'] ?? '';
-    $roles = $tokenData['realm_access']['roles'] ?? [];
+    $email = $data['email'] ?? '';
+    $username = $data['preferred_username'] ?? '';
+    $roles = $data['realm_access']['roles'] ?? [];
+
+
 
 
     $user = get_user_by('email', $email);
