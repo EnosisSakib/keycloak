@@ -12,8 +12,7 @@ function keycloak_online_authenticate_user() {
 
     $token = $_COOKIE['token'] ?? '';
 
-    $api_url = 'http://node-server:3000/currentuser';
-    $introspect_url = 'http://192.168.1.40:8080/realms/myrealm/protocol/openid-connect/userinfo';
+    $introspect_url = 'http://192.168.2.177:8080/realms/myrealm/protocol/openid-connect/userinfo';
 
     $args = [
         'headers' => [
